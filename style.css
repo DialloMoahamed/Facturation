@@ -1,0 +1,234 @@
+body {
+  background-color: #E0E6ED;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.nav-card {
+  background-color: transparent;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.nav-card:hover {
+  background-color: #3B51A1;
+  padding: 10px 15px !important;
+  transform: translateY(-2px);
+  color: white;
+}
+
+.nav-card.active {
+  background-color: #89C7F4 !important;
+  padding: 10px 15px !important;
+  border-bottom: 2px solid #007BFF;
+  color: #0E6EFD !important;
+}
+
+.table>:not(caption)>*>* {
+  padding: 20px 15px;
+}
+
+.card {
+  /* Offset-x | Offset-y | Blur-radius | Spread-radius | Color */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+
+@media (max-width: 991px) {
+
+    /* HEADER */
+    header .row {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    header .col-auto,
+    header .col {
+        width: 100%;
+    }
+
+    header .d-flex {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* NAVIGATION */
+    nav {
+        min-height: auto !important;
+    }
+
+    nav .col-lg-3 {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    nav .col-lg-3:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    nav h6 {
+        margin-top: 10px;
+    }
+
+    nav ul li a {
+        padding: 5px 0;
+    }
+}
+
+
+@media (max-width: 576px) {
+
+    /* Titre */
+    header h4 {
+        font-size: 20px;
+    }
+
+    /* Icônes */
+    header .d-flex a {
+        font-size: 14px;
+    }
+
+    nav {
+        padding-bottom: 20px;
+    }
+
+    nav h6 {
+        font-size: 14px;
+    }
+
+    nav ul li a {
+        font-size: 13px !important;
+    }
+}
+
+/* =========================
+   RESPONSIVE MAIN
+========================= */
+
+@media (max-width: 991px) {
+
+    main .m-5 {
+        margin: 20px !important;
+    }
+
+    /* Cards statistiques */
+    main .w-50 {
+        width: 100% !important;
+    }
+
+    main .d-flex.gap-3.w-100 {
+        flex-direction: column;
+    }
+
+    main .card.m-4 {
+        margin: 10px 0 !important;
+    }
+
+    /* Graphiques */
+    main img.w-75 {
+        width: 75% !important;
+    }
+
+    /* Alignement contenu graphique */
+    /* main .card .d-flex.align-items-center.gap-2 {
+        flex-direction: column;
+        text-align: center;
+    } */
+
+    /* Cartes rapides */
+    main .col-md-4 {
+        margin-bottom: 15px;
+    }
+
+    /* Scroll cards */
+    main .card[style*="height: 510px"] {
+        height: auto !important;
+        min-height: 350px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    /* Titre */
+    main h2 {
+        font-size: 24px;
+        /* text-align: center; */
+    }
+
+    /* Titres des cards */
+    main h5 {
+        font-size: 18px;
+        /* text-align: center; */
+    }
+
+    main p,
+    main small,
+    main span {
+        font-size: 14px;
+    }
+
+    /* Légendes */
+    /* .legend {
+        justify-content: center;
+    } */
+
+    /* Boutons rapides */
+    .card .d-flex.justify-content-between {
+        align-items: center;
+    }
+
+    /* Colonnes */
+    .row.g-3 {
+        row-gap: 20px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    main .m-5 {
+        margin: 15px !important;
+    }
+
+    /* Padding mobile */
+    main .card {
+        padding: 15px !important;
+    }
+
+    /* Icônes */
+    .bi {
+        font-size: 16px !important;
+    }
+
+    /* Réduction espaces */
+    .mb-5,
+    .mt-5 {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Texte long */
+    .legend-label {
+        font-size: 13px;
+    }
+
+    /* Cartes dashboard */
+    main .card-body {
+        padding: 15px;
+    }
+
+}

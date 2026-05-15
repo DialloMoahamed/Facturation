@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container-fluid py-3" style="background-color: #dfe5ea; min-height: 100vh;">
+
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h2 class="fw-bold text-primary">
+                ACOMPTE
+            </h2>
+
+            <i class="bi bi-x-lg fs-1 text-primary"></i>
+
+        </div>
+
+        <div class="row">
+
+            <!-- LEFT -->
+            <div class="col-lg-7">
+
+                <!-- Relation -->
+                <div class="card border-0 rounded-4 shadow-sm mb-4">
+                    <div class="card-body">
+
+                        <p class="fs-2 text-secondary">
+                            En relation avec
+                        </p>
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <h3 class="fw-bold">
+                                    D-2023-0112
+                                </h3>
+
+                                <h6 class="fw-bold">
+                                    Nom du client
+                                </h6>
+
+                                <div class="d-flex gap-3 mt-2">
+
+                                    <small>
+                                        <i class="bi bi-clock"></i>
+                                        13 mars 2023
+                                    </small>
+
+                                    <small>
+                                        <i class="bi bi-calendar4-event"></i>
+                                        13 mars 2023
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex align-items-center gap-4">
+
+                                <span class="badge rounded-pill px-4 py-2 text-primary"
+                                    style="background-color: #a8dcff;">
+                                    Finalisé
+                                </span>
+
+                                <small class="fw-bold">
+                                    10 000 fcfa TTC
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Montant -->
+                <div class="card border-0 rounded-4 shadow-sm mb-4">
+                    <div class="card-body">
+
+                        <h2 class="text-secondary mb-4">
+                            Montant de l'acompte
+                        </h2>
+
+                        <div class="border border-primary rounded-4 p-3">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label class="fw-bold mb-2">
+                                        Calculer en *
+                                    </label>
+
+                                    <input type="text" class="form-control form-control-lg" placeholder="%">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="fw-bold mb-2">
+                                        Montant total HT *
+                                    </label>
+
+                                    <input type="text" class="form-control form-control-lg" placeholder="00">
+                                </div>
+
+                            </div>
+
+                            <!-- Stats -->
+                            <div class="row text-center mt-5">
+
+                                <div class="col-md-4">
+                                    <small class="text-secondary fw-bold">
+                                        Total à facturer
+                                    </small>
+
+                                    <h2 class="fw-bold">
+                                        10 000 fcfa
+                                        <small>HT</small>
+                                    </h2>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <small class="text-secondary fw-bold">
+                                        Montant de l'acompte
+                                    </small>
+
+                                    <h2 class="fw-bold">
+                                        3 000 fcfa
+                                        <small>HT</small>
+                                    </h2>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <small class="text-secondary fw-bold">
+                                        Reste à payer
+                                    </small>
+
+                                    <h2 class="fw-bold">
+                                        7 000 fcfa
+                                        <small>HT</small>
+                                    </h2>
+                                </div>
+
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mt-4">
+
+                                <label class="fw-bold mb-2">
+                                    Désignation
+                                </label>
+
+                                <textarea class="form-control" rows="4"
+                                    placeholder="Description de l'article"></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Ajouter -->
+                <div class="card border-0 rounded-4 shadow-sm mb-4">
+                    <div class="card-body">
+
+                        <button class="btn fw-bold text-primary border-0">
+                            + Ajouter un article
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Date émission -->
+                <div class="card border-0 rounded-4 shadow-sm mb-4">
+                    <div class="card-body">
+
+                        <h2 class="text-secondary">
+                            Date d'émission
+                        </h2>
+
+                        <label class="fw-bold mt-3 mb-2">
+                            Veuillez entrez une date d'émission
+                        </label>
+
+                        <input type="text" class="form-control form-control-lg fw-bold" value="00/00/0000">
+
+                        <small class="text-secondary mt-3 d-block">
+                            Date d'émission le 00/00/0000
+                        </small>
+
+                    </div>
+                </div>
+
+                <!-- Validité -->
+                <div class="card border-0 rounded-4 shadow-sm mb-4">
+                    <div class="card-body">
+
+                        <h2 class="text-secondary">
+                            Validité
+                        </h2>
+
+                        <label class="fw-bold mt-3 mb-2">
+                            Veuillez entrez une date de validité limite
+                        </label>
+
+                        <input type="text" class="form-control form-control-lg fw-bold" value="00/00/0000">
+
+                        <small class="text-secondary mt-3 d-block">
+                            Valide jusqu'au 00/00/0000
+                        </small>
+
+                    </div>
+                </div>
+
+                <!-- Langue -->
+                <div class="card border-0 rounded-4 shadow-sm mb-4">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <h2 class="text-secondary">
+                                Langue
+                            </h2>
+
+                            <h6 class="fw-bold">
+                                sélectionner une langue pour le document
+                            </h6>
+
+                            <small class="text-secondary">
+                                Langue actuelle: Francais
+                            </small>
+
+                        </div>
+
+                        <select class="form-select form-select-lg fw-bold" style="width: 220px;">
+
+                            <option>Francais</option>
+
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- Devise -->
+                <div class="card border-0 rounded-4 shadow-sm mb-4">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <h2 class="text-secondary">
+                                Devise
+                            </h2>
+
+                            <h6 class="fw-bold">
+                                Modifier la devise du document
+                            </h6>
+
+                            <small class="text-secondary">
+                                Devise actuelle: Francs CFA
+                            </small>
+
+                        </div>
+
+                        <select class="form-select form-select-lg fw-bold" style="width: 220px;">
+
+                            <option>Francais</option>
+
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- Pièces jointes -->
+                <div class="card border-0 rounded-4 shadow-sm">
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <h2 class="text-secondary">
+                                    Pièces Jointes
+                                </h2>
+
+                                <h6 class="fw-bold">
+                                    Ajoutez des pièces jointes avec le document
+                                </h6>
+
+                            </div>
+
+                            <button class="btn btn-primary fw-bold rounded-3">
+                                + Ajouter un document
+                            </button>
+
+                        </div>
+
+                        <!-- Upload -->
+                        <div class="border border-2 border-secondary border-dashed rounded-4 mt-4 p-5 text-center">
+
+                            <i class="bi bi-file-earmark fs-1"></i>
+
+                            <h5 class="fw-bold mt-2">
+                                + Ajouter un document
+                            </h5>
+
+                        </div>
+
+                        <p class="text-center text-secondary mt-4">
+                            Aucun document ajouter pour l'instant
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-lg-5">
+
+                <div class="d-flex justify-content-end mb-3">
+
+                    <button class="btn btn-primary fw-bold px-4">
+                        <i class="bi bi-tools"></i>
+                        Configurer
+                    </button>
+
+                </div>
+
+                <!-- Preview -->
+                <div class="card border-0 shadow-lg" style="
+                box-shadow:
+                0 0 0 1px rgba(0,0,0,0.03),
+                0 10px 30px rgba(0,0,0,0.10),
+                0 30px 60px rgba(0,0,0,0.08);
+            ">
+
+                    <div class="card-body p-4">
+
+                        <div class="d-flex justify-content-between">
+
+                            <img src="logo.png" style="width: 160px;">
+
+                            <div class="text-end">
+
+                                <h2 class="fw-bold text-primary">
+                                    Facture d'acompte
+                                </h2>
+
+                                <h5 class="fw-bold">
+                                    Nom du client
+                                </h5>
+
+                                <p class="m-0">
+                                    Boite postale et ville du client
+                                </p>
+
+                                <p class="m-0">
+                                    Localisation du client
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <h5 class="fw-bold">
+                                    Nom du prestataire
+                                </h5>
+
+                                <p class="m-0">Boite postale et ville</p>
+                                <p class="m-0">Localisation</p>
+                                <p class="m-0">Numéro de tel</p>
+                                <p class="m-0">Email</p>
+
+                            </div>
+
+                            <div class="col-md-6 text-end">
+
+                                <p class="m-0">
+                                    <strong>N° du document</strong> 000000
+                                </p>
+
+                                <p class="m-0">
+                                    <strong>Date d'émission</strong> 00-00-2025
+                                </p>
+
+                                <p class="m-0">
+                                    <strong>Date de validité</strong> 00-00-2025
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
