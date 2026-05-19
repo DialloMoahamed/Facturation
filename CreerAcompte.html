@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Creer Acompte</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -18,11 +18,13 @@
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <h2 class="fw-bold text-primary">
+            <h3 class="fw-bold text-primary">
                 ACOMPTE
-            </h2>
+            </h3>
 
-            <i class="bi bi-x-lg fs-1 text-primary"></i>
+            <a href="facturation.html" class="text-decoration-none">
+                <i class="bi bi-x-lg fs-1 text-primary"></i>
+            </a>
 
         </div>
 
@@ -35,7 +37,7 @@
                 <div class="card border-0 rounded-4 shadow-sm mb-4">
                     <div class="card-body">
 
-                        <p class="fs-2 text-secondary">
+                        <p class="fs-4 text-secondary">
                             En relation avec
                         </p>
 
@@ -43,9 +45,9 @@
 
                             <div>
 
-                                <h3 class="fw-bold">
+                                <h5 class="fw-bold">
                                     D-2023-0112
-                                </h3>
+                                </h5>
 
                                 <h6 class="fw-bold">
                                     Nom du client
@@ -89,9 +91,9 @@
                 <div class="card border-0 rounded-4 shadow-sm mb-4">
                     <div class="card-body">
 
-                        <h2 class="text-secondary mb-4">
+                        <h4 class="text-secondary mb-4">
                             Montant de l'acompte
-                        </h2>
+                        </h4>
 
                         <div class="border border-primary rounded-4 p-3">
 
@@ -116,17 +118,17 @@
                             </div>
 
                             <!-- Stats -->
-                            <div class="row text-center mt-5">
+                            <div class="row text-center mt-3">
 
                                 <div class="col-md-4">
                                     <small class="text-secondary fw-bold">
                                         Total à facturer
                                     </small>
 
-                                    <h2 class="fw-bold">
+                                    <h4 class="fw-bold">
                                         10 000 fcfa
                                         <small>HT</small>
-                                    </h2>
+                                    </h4>
                                 </div>
 
                                 <div class="col-md-4">
@@ -134,10 +136,10 @@
                                         Montant de l'acompte
                                     </small>
 
-                                    <h2 class="fw-bold">
+                                    <h4 class="fw-bold">
                                         3 000 fcfa
                                         <small>HT</small>
-                                    </h2>
+                                    </h4>
                                 </div>
 
                                 <div class="col-md-4">
@@ -145,16 +147,16 @@
                                         Reste à payer
                                     </small>
 
-                                    <h2 class="fw-bold">
+                                    <h4 class="fw-bold">
                                         7 000 fcfa
                                         <small>HT</small>
-                                    </h2>
+                                    </h4>
                                 </div>
 
                             </div>
 
                             <!-- Description -->
-                            <div class="mt-4">
+                            <div class="mt-2">
 
                                 <label class="fw-bold mb-2">
                                     Désignation
@@ -185,9 +187,9 @@
                 <div class="card border-0 rounded-4 shadow-sm mb-4">
                     <div class="card-body">
 
-                        <h2 class="text-secondary">
+                        <h4 class="text-secondary">
                             Date d'émission
-                        </h2>
+                        </h4>
 
                         <label class="fw-bold mt-3 mb-2">
                             Veuillez entrez une date d'émission
@@ -206,9 +208,9 @@
                 <div class="card border-0 rounded-4 shadow-sm mb-4">
                     <div class="card-body">
 
-                        <h2 class="text-secondary">
+                        <h4 class="text-secondary">
                             Validité
-                        </h2>
+                        </h4>
 
                         <label class="fw-bold mt-3 mb-2">
                             Veuillez entrez une date de validité limite
@@ -229,9 +231,9 @@
 
                         <div>
 
-                            <h2 class="text-secondary">
+                            <h4 class="text-secondary">
                                 Langue
-                            </h2>
+                            </h4>
 
                             <h6 class="fw-bold">
                                 sélectionner une langue pour le document
@@ -246,6 +248,9 @@
                         <select class="form-select form-select-lg fw-bold" style="width: 220px;">
 
                             <option>Francais</option>
+                            <option>Anglais</option>
+                            <option>Espagnole</option>
+                            <option>Arabe</option>
 
                         </select>
 
@@ -258,9 +263,9 @@
 
                         <div>
 
-                            <h2 class="text-secondary">
+                            <h4 class="text-secondary">
                                 Devise
-                            </h2>
+                            </h4>
 
                             <h6 class="fw-bold">
                                 Modifier la devise du document
@@ -275,6 +280,9 @@
                         <select class="form-select form-select-lg fw-bold" style="width: 220px;">
 
                             <option>Francais</option>
+                            <option>Anglais</option>
+                            <option>Espagnole</option>
+                            <option>Arabe</option>
 
                         </select>
 
@@ -289,9 +297,9 @@
 
                             <div>
 
-                                <h2 class="text-secondary">
+                                <h4 class="text-secondary">
                                     Pièces Jointes
-                                </h2>
+                                </h4>
 
                                 <h6 class="fw-bold">
                                     Ajoutez des pièces jointes avec le document
@@ -338,71 +346,199 @@
                 </div>
 
                 <!-- Preview -->
-                <div class="card border-0 shadow-lg" style="
+                <div class="card border-0" style="
+                border-radius:14px;
                 box-shadow:
                 0 0 0 1px rgba(0,0,0,0.03),
-                0 10px 30px rgba(0,0,0,0.10),
-                0 30px 60px rgba(0,0,0,0.08);
+                0 10px 25px rgba(0,0,0,0.08),
+                0 25px 40px rgba(0,0,0,0.06);
             ">
 
-                    <div class="card-body p-4">
+                    <div class="card-body p-0">
 
-                        <div class="d-flex justify-content-between">
+                        <!-- Header -->
+                        <div class="p-4 border-bottom">
 
-                            <img src="logo.png" style="width: 160px;">
+                            <div class="d-flex justify-content-between">
 
-                            <div class="text-end">
+                                <img src="logo.png" style="width:110px;">
 
-                                <h2 class="fw-bold text-primary">
-                                    Facture d'acompte
-                                </h2>
+                                <div class="text-end">
 
-                                <h5 class="fw-bold">
-                                    Nom du client
-                                </h5>
+                                    <h4 class="fw-bold text-primary">
+                                        Facture d'acompte
+                                    </h4>
 
-                                <p class="m-0">
-                                    Boite postale et ville du client
-                                </p>
+                                    <p class="fw-bold m-0">
+                                        Nom du client
+                                    </p>
 
-                                <p class="m-0">
-                                    Localisation du client
-                                </p>
+                                    <small class="d-block">
+                                        Boite postale et ville du client
+                                    </small>
+
+                                    <small>
+                                        Localisation du client
+                                    </small>
+
+                                </div>
 
                             </div>
 
                         </div>
 
-                        <hr>
+                        <!-- Contenu -->
+                        <div class="p-4">
 
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="col-md-6">
+                                <div class="col-6">
 
-                                <h5 class="fw-bold">
-                                    Nom du prestataire
-                                </h5>
+                                    <h6 class="fw-bold">
+                                        Nom du prestataire
+                                    </h6>
 
-                                <p class="m-0">Boite postale et ville</p>
-                                <p class="m-0">Localisation</p>
-                                <p class="m-0">Numéro de tel</p>
-                                <p class="m-0">Email</p>
+                                    <small class="d-block">
+                                        Boite postale et ville du prestataire
+                                    </small>
+
+                                    <small class="d-block">
+                                        Localisation du prestataire
+                                    </small>
+
+                                    <small class="d-block">
+                                        Numéro de tel prestataire
+                                    </small>
+
+                                    <small>
+                                        Email du prestataire
+                                    </small>
+
+                                </div>
+
+                                <div class="col-6 text-end">
+
+                                    <small class="d-block">
+                                        <strong>N° du document</strong> 000000
+                                    </small>
+
+                                    <small class="d-block">
+                                        <strong>Date d'émission</strong> 00-00-2025
+                                    </small>
+
+                                    <small>
+                                        <strong>Date de validité</strong> 00-00-2025
+                                    </small>
+
+                                </div>
 
                             </div>
 
-                            <div class="col-md-6 text-end">
+                            <hr class="border-dark border-2 my-4">
 
-                                <p class="m-0">
-                                    <strong>N° du document</strong> 000000
-                                </p>
+                            <!-- TABLE -->
+                            <div class="table-responsive">
 
-                                <p class="m-0">
-                                    <strong>Date d'émission</strong> 00-00-2025
-                                </p>
+                                <table class="table table-sm align-middle">
 
-                                <p class="m-0">
-                                    <strong>Date de validité</strong> 00-00-2025
-                                </p>
+                                    <thead class="border-bottom border-primary border-2">
+
+                                        <tr class="text-primary small">
+
+                                            <th>#</th>
+                                            <th>Désignation et description</th>
+                                            <th>Unité</th>
+                                            <th>Quantité</th>
+                                            <th>Prix u. HT</th>
+                                            <th>TVA</th>
+                                            <th>Montant HT</th>
+                                            <th>Montant TTC</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody class="small">
+
+                                        <tr>
+
+                                            <td>1</td>
+                                            <td>
+                                                <strong>Désignation</strong><br>
+                                                <small>Description de l'acompte</small>
+                                            </td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">3000</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">000000</td>
+                                            <td class="text-center">000000</td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            <hr class="border-primary my-4">
+
+                            <!-- FOOTER -->
+                            <div class="row">
+
+                                <div class="col-6">
+
+                                    <h6 class="fw-bold">
+                                        Délai de paiement
+                                    </h6>
+
+                                    <p class="m-0">
+                                        30 jours
+                                    </p>
+
+                                    <h6 class="fw-bold mt-4">
+                                        Moyen de paiement
+                                    </h6>
+
+                                    <p class="m-0">
+                                        Virement bancaire
+                                    </p>
+
+                                </div>
+
+                                <div class="col-6">
+
+                                    <div class="d-flex justify-content-end">
+
+                                        <div style="min-width: 250px;">
+
+                                            <div class="d-flex justify-content-between small mb-2">
+
+                                                <strong>Total HT</strong>
+                                                <span>10000</span>
+
+                                            </div>
+
+                                            <div class="d-flex justify-content-between small mb-2">
+
+                                                <strong>TVA</strong>
+                                                <span>2000</span>
+
+                                            </div>
+
+                                            <div class="d-flex justify-content-between small">
+
+                                                <strong>Total TTC</strong>
+                                                <span>12000</span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
 
                             </div>
 

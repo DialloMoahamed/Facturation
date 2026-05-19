@@ -120,7 +120,7 @@ body {
 
     main .m-5 {
         margin: 20px !important;
-    }
+}
 
     /* Cards statistiques */
     main .w-50 {
@@ -229,6 +229,199 @@ body {
     /* Cartes dashboard */
     main .card-body {
         padding: 15px;
+    }
+
+
+}
+
+/* =========================
+   RESPONSIVE FORMULAIRES & PREVIEW
+========================= */
+
+@media (max-width: 1024px) {
+
+    /* Colonnes formulaires */
+    .col-lg-7,
+    .col-lg-5 {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+
+    /* Preview card */
+    .card.border-0[style*="border-radius"] {
+        margin-top: 30px;
+    }
+
+    /* Tableau responsive */
+    .table-responsive {
+        font-size: 13px;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px 8px !important;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    /* Formulaires stacked */
+    .col-md-6,
+    .col-md-4,
+    .col-md-3,
+    .col-md-8 {
+        width: 100% !important;
+    }
+
+    /* Header formulaire */
+    .d-flex.justify-content-between.align-items-center {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .d-flex.justify-content-between.align-items-center > div {
+        width: 100%;
+    }
+
+    /* Preview image */
+    img[style*="width:110px"],
+    img[style*="width:130px"] {
+        width: 80px !important;
+    }
+
+    /* Cartes articles */
+    .border.border-primary.rounded-4 {
+        padding: 15px !important;
+    }
+
+    /* Input groups */
+    .input-group {
+        flex-direction: column;
+    }
+
+    .input-group .form-control,
+    .input-group .btn {
+        width: 100% !important;
+        border-radius: 12px !important;
+        margin-bottom: 8px;
+    }
+
+    /* Boutons */
+    .btn {
+        padding: 10px 15px !important;
+        font-size: 14px;
+    }
+
+    /* Sections cartes */
+    .card-body {
+        padding: 15px !important;
+    }
+
+    /* Rows avec gaps */
+    .row.g-3 {
+        row-gap: 15px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    /* Container padding */
+    .container-fluid {
+        padding: 10px !important;
+    }
+
+    /* Header */
+    h3.fw-bold {
+        font-size: 20px;
+    }
+
+    /* Icône fermeture */
+    .bi-x-lg {
+        font-size: 1.5rem !important;
+    }
+
+    /* Cartes */
+    .card {
+        margin-bottom: 15px;
+        border-radius: 12px !important;
+    }
+
+    .card-body {
+        padding: 12px !important;
+    }
+
+    /* Textes */
+    h4.fw-bold {
+        font-size: 18px;
+    }
+
+    h5.fw-bold,
+    h6.fw-bold {
+        font-size: 15px;
+    }
+
+    label.fw-bold {
+        font-size: 13px;
+    }
+
+    small {
+        font-size: 12px;
+    }
+
+    /* Inputs */
+    .form-control,
+    .form-select,
+    input[type="text"],
+    textarea {
+        font-size: 14px;
+        padding: 10px 12px !important;
+        height: auto !important;
+        min-height: 40px;
+    }
+
+    /* Preview table */
+    .table {
+        font-size: 11px;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px 5px !important;
+    }
+
+    .table-responsive {
+        margin: 10px 0;
+    }
+
+    /* Totaux */
+    .d-flex.justify-content-end {
+        width: 100%;
+    }
+
+    /* Flex wrap */
+    .d-flex {
+        flex-wrap: wrap;
+    }
+
+    /* Badges */
+    .badge {
+        padding: 4px 10px !important;
+        font-size: 11px;
+    }
+
+    /* Espacements */
+    .gap-2,
+    .gap-3,
+    .gap-4,
+    .gap-5 {
+        gap: 8px !important;
+    }
+
+    /* Row columns */
+    .row.g-2 {
+        row-gap: 12px;
     }
 
 }
