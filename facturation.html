@@ -46,84 +46,143 @@
     </header>
 
     <!-- Menu de Navigation -->
-    <nav style="background: #2B375B;">
-        <div class="container-fluid px-4 py-1">
-            <div class="row">
-                <!-- Colonne 1: PRODUCTIVITÉ -->
-                <div class="col-12 col-md-6 col-lg-3" style="border-right: 1px solid #ffff; padding-right: 20px;">
-                    <h6 class="text-secondary fw-bold mb-3">PRODUCTIVITÉ</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white text-decoration-none small d-flex align-items-center gap-2"><i
-                                    class="bi bi-graph-up"></i>Analyse</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-check-circle"></i>Tâches</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-card-checklist"></i>Projets</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-clock-history"></i>Suivi du temps</a></li>
-                    </ul>
-                </div>
+    <nav style="background: #2B375B; min-height: 120px;">
+            <div class="container-fluid px-4 py-3">
+                <!-- Navigation Mobile -->
+                <div class="d-lg-none">
 
-                <!-- Colonne 2: SUIVI & FACTURES -->
-                <div class="col-12 col-md-6 col-lg-3" style="border-right: 1px solid #ffff; padding-right: 20px;">
-                    <h6 class="text-secondary fw-bold mb-3">SUIVI & FACTURES</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="facturation.html"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2"><i
-                                    class="bi bi-file-earmark-text"></i>Facturation</a></li>
-                        <li><a href="client.html"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-person-square"></i>Clients</a></li>
-                        <li><a href="article.html"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-file-earmark"></i>Articles</a></li>
-                    </ul>
-                </div>
+                    <div class="dropdown mb-2">
+                        <button class="btn w-100 text-start text-white" style="background:#3C54A9;"
+                            data-bs-toggle="dropdown">
+                            PRODUCTIVITÉ
+                        </button>
+                        <ul class="dropdown-menu w-100">
+                            <li><a class="dropdown-item" href="#">Analyse</a></li>
+                            <li><a class="dropdown-item" href="#">Tâches</a></li>
+                            <li><a class="dropdown-item" href="#">Projets</a></li>
+                            <li><a class="dropdown-item" href="#">Suivi du temps</a></li>
+                        </ul>
+                    </div>
 
-                <!-- Colonne 3: COMPTABILITÉS -->
-                <div class="col-12 col-md-6 col-lg-3" style="border-right: 1px solid #ffff; padding-right: 20px;">
-                    <h6 class="text-secondary fw-bold mb-3">COMPTABILITÉS</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none small d-flex align-items-center gap-2"><i
-                                    class="bi bi-bank"></i>Banques</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-journal-bookmark"></i>Livres</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-briefcase-fill"></i>Déclarations</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-file-text"></i>TVA</a></li>
-                    </ul>
-                </div>
+                    <div class="dropdown mb-2">
+                        <button class="btn w-100 text-start text-white" style="background:#3C54A9;"
+                            data-bs-toggle="dropdown">
+                            SUIVI & FACTURES
+                        </button>
+                        <ul class="dropdown-menu w-100">
+                            <li><a class="dropdown-item" href="facturation.html">Facturation</a></li>
+                            <li><a class="dropdown-item" href="client.html">Clients</a></li>
+                            <li><a class="dropdown-item" href="Article.html">Articles</a></li>
+                        </ul>
+                    </div>
 
-                <!-- Colonne 4: ALLER PLUS LOIN -->
-                <div class="col-12 col-md-6 col-lg-3">
-                    <h6 class="text-secondary fw-bold mb-3">ALLER PLUS LOIN</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none small d-flex align-items-center gap-2"><i
-                                    class="bi bi-tag-fill"></i>CE des Insides</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-shop"></i>Store</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-people-fill"></i>Parrainage</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-link-45deg"></i>Intégrations</a></li>
-                        <li><a href="#"
-                                class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
-                                    class="bi bi-cloud-arrow-down"></i>Exports</a></li>
-                    </ul>
+                    <div class="dropdown mb-2">
+                        <button class="btn w-100 text-start text-white" style="background:#3C54A9;"
+                            data-bs-toggle="dropdown">
+                            COMPTABILITÉS
+                        </button>
+                        <ul class="dropdown-menu w-100">
+                            <li><a class="dropdown-item" href="#">Banques</a></li>
+                            <li><a class="dropdown-item" href="#">Livres</a></li>
+                            <li><a class="dropdown-item" href="#">Déclarations</a></li>
+                            <li><a class="dropdown-item" href="#">TVA</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="btn w-100 text-start text-white" style="background:#3C54A9;"
+                            data-bs-toggle="dropdown">
+                            ALLER PLUS LOIN
+                        </button>
+                        <ul class="dropdown-menu w-100">
+                            <li><a class="dropdown-item" href="#">CE des Insides</a></li>
+                            <li><a class="dropdown-item" href="#">Store</a></li>
+                            <li><a class="dropdown-item" href="#">Parrainage</a></li>
+                            <li><a class="dropdown-item" href="#">Intégrations</a></li>
+                            <li><a class="dropdown-item" href="#">Exports</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="row d-none d-lg-flex">
+                    <!-- Colonne 1: PRODUCTIVITÉ -->
+                    <div class="col-12 col-md-6 col-lg-3" style="border-right: 1px solid #ffff; padding-right: 20px;">
+                        <h6 class="text-secondary fw-bold mb-3">PRODUCTIVITÉ</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2"><i
+                                        class="bi bi-graph-up"></i>Analyse</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-check-circle"></i>Tâches</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-card-checklist"></i>Projets</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-clock-history"></i>Suivi du temps</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Colonne 2: SUIVI & FACTURES -->
+                    <div class="col-12 col-md-6 col-lg-3" style="border-right: 1px solid #ffff; padding-right: 20px;">
+                        <h6 class="text-secondary fw-bold mb-3">SUIVI & FACTURES</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="facturation.html"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2"><i
+                                        class="bi bi-file-earmark-text"></i>Facturation</a></li>
+                            <li><a href="client.html"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-person-square"></i>Clients</a></li>
+                            <li><a href="Article.html"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-file-earmark"></i>Articles</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Colonne 3: COMPTABILITÉS -->
+                    <div class="col-12 col-md-6 col-lg-3" style="border-right: 1px solid #ffff; padding-right: 20px;">
+                        <h6 class="text-secondary fw-bold mb-3">COMPTABILITÉS</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2"><i
+                                        class="bi bi-bank"></i>Banques</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-journal-bookmark"></i>Livres</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-briefcase-fill"></i>Déclarations</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-file-text"></i>TVA</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Colonne 4: ALLER PLUS LOIN -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="text-secondary fw-bold mb-3">ALLER PLUS LOIN</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2"><i
+                                        class="bi bi-tag-fill"></i>CE des Insides</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-shop"></i>Store</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-people-fill"></i>Parrainage</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-link-45deg"></i>Intégrations</a></li>
+                            <li><a href="#"
+                                    class="text-white text-decoration-none small d-flex align-items-center gap-2 mt-2"><i
+                                        class="bi bi-cloud-arrow-down"></i>Exports</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     </div>
 
     <main style="padding-top: 280px;">
