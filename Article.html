@@ -1508,181 +1508,640 @@
 
                         <!-- Articles -->
                         <div class="tab-pane fade show active" id="Articles">
+
+                            <!-- Bouton nouvel article -->
                             <div class="d-flex justify-content-end">
-                                <button class="btn border-primary text-primary" type="button" data-bs-toggle="offcanvas"
-                                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                                    <i class="bi bi-plus"></i> Nouvelle article
+                                <button
+                                    class="btn border-primary text-primary"
+                                    type="button"
+                                    data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasCreerArticle"
+                                    aria-controls="offcanvasCreerArticle"
+                                >
+                                    <i class="bi bi-plus"></i> Nouvel article
                                 </button>
                             </div>
-                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
-                                aria-labelledby="offcanvasExampleLabel" style="width: 700px;">
-                                <div class="offcanvas-header d-flex justify-content-between align-items-center">
-                                    <div class="d-flex gap-2 align-items-center">
-                                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                            aria-label="Close"></button>
-                                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Créer un article</h5>
-                                    </div>
-                                    <div class="d-flex gap-2 align-items-center">
-                                        <a href="CreerDevis.html" type="button" class="btn btn-primary">Créer</a>
-                                    </div>
+
+                            <!-- OFFCANVAS : CRÉER UN ARTICLE -->
+                            <!-- ===================================================== -->
+                            <div
+                                class="offcanvas offcanvas-end"
+                                tabindex="-1"
+                                id="offcanvasCreerArticle"
+                                aria-labelledby="offcanvasCreerArticleLabel"
+                                style="width: 700px;"
+                            >
+
+                                <!-- HEADER -->
+                                <div class="offcanvas-header">
+
+                                    <h5
+                                        class="offcanvas-title"
+                                        id="offcanvasCreerArticleLabel"
+                                    >
+                                        Créer article
+                                    </h5>
+
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="offcanvas"
+                                        aria-label="Fermer"
+                                    ></button>
+
                                 </div>
+
+
+                                <!-- BODY -->
                                 <div class="offcanvas-body">
+
                                     <div class="card border-primary rounded-3">
+
                                         <div class="card-body">
-                                            <form action="">
+
+                                            <form id="articleForm">
+
+                                                <!-- Désignation -->
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlInput1" class="form-label">Désignation
-                                                        de l'article *</label>
-                                                    <input type="text" class="form-control"
-                                                        id="exampleFormControlInput1"
-                                                        placeholder="Désignation de l'article">
+
+                                                    <label
+                                                        for="designation"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier la désignation de l'article
+                                                    </label>
+
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="designation"
+                                                        placeholder="Désignation de l'article"
+                                                        required
+                                                    >
+
                                                 </div>
+
+
+                                                <!-- Type -->
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlInput1" class="form-label">Type
-                                                        d'article *</label>
-                                                    <input type="text" class="form-control"
-                                                        id="exampleFormControlInput1" placeholder="Type d'article *">
+
+                                                    <label
+                                                        for="typeArticle"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier le type d'article
+                                                    </label>
+
+                                                    <select
+                                                        class="form-select"
+                                                        id="typeArticle"
+                                                        required
+                                                    >
+
+                                                        <option value="" selected disabled>
+                                                            Sélectionnez le type d'article
+                                                        </option>
+
+                                                        <option value="Expertise">
+                                                            Expertise
+                                                        </option>
+
+                                                        <option value="Développement">
+                                                            Développement
+                                                        </option>
+
+                                                        <option value="Formation">
+                                                            Formation
+                                                        </option>
+
+                                                        <option value="Conseil">
+                                                            Conseil
+                                                        </option>
+
+                                                        <option value="Produit">
+                                                            Produit
+                                                        </option>
+
+                                                    </select>
+
                                                 </div>
+
+
+                                                <!-- Unité -->
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlInput1" class="form-label">Unité de
-                                                        l'article *</label>
-                                                    <input type="text" class="form-control"
-                                                        id="exampleFormControlInput1"
-                                                        placeholder="Unité de mesure du montant heure/prix unitaire">
+
+                                                    <label
+                                                        for="uniteArticle"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier l'unité de mesure de l'article
+                                                    </label>
+
+                                                    <select
+                                                        class="form-select"
+                                                        id="uniteArticle"
+                                                        required
+                                                    >
+
+                                                        <option value="" selected disabled>
+                                                            Sélectionnez l'unité
+                                                        </option>
+
+                                                        <option value="Unité">
+                                                            Unité
+                                                        </option>
+
+                                                        <option value="Heure">
+                                                            Heure
+                                                        </option>
+
+                                                        <option value="Jour">
+                                                            Jour
+                                                        </option>
+
+                                                        <option value="Mois">
+                                                            Mois
+                                                        </option>
+
+                                                        <option value="Forfait">
+                                                            Forfait
+                                                        </option>
+
+                                                    </select>
+
                                                 </div>
+
+
+                                                <!-- Prix -->
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlInput1" class="form-label">Prix
-                                                        unitaire de l'article *</label>
-                                                    <input type="text" class="form-control"
-                                                        id="exampleFormControlInput1" placeholder="Prix unitaire">
+
+                                                    <label
+                                                        for="prixArticle"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier le prix de l'article
+                                                    </label>
+
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        id="prixArticle"
+                                                        placeholder="Écrivez le prix de l'article"
+                                                        min="0"
+                                                        required
+                                                    >
+
                                                 </div>
+
+
+                                                <!-- Taxe -->
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlInput1" class="form-label">Taxe à
-                                                        valeur ajoutée *</label>
-                                                    <input type="text" class="form-control"
-                                                        id="exampleFormControlInput1"
-                                                        placeholder="TVA applicable à l'article en pourcentage">
+
+                                                    <label
+                                                        for="taxeArticle"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier la taxe appliqué à l'article
+                                                    </label>
+
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        id="taxeArticle"
+                                                        placeholder="Écrivez la taxe appliqué à l'article"
+                                                        min="0"
+                                                        max="100"
+                                                        required
+                                                    >
+
                                                 </div>
+
+
+                                                <!-- Description -->
                                                 <div class="mb-3">
-                                                    <label for="exampleFormControlTextarea1" class="form-label">Example
-                                                        textarea</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                        rows="3"></textarea>
+
+                                                    <label
+                                                        for="descriptionArticle"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier la description/les notes à propos de cet article
+                                                    </label>
+
+                                                    <textarea
+                                                        class="form-control"
+                                                        id="descriptionArticle"
+                                                        rows="3"
+                                                        placeholder="Rédigez une description ou des notes à propos de cet article"
+                                                    ></textarea>
+
                                                 </div>
+
+                                                                                <!-- FOOTER -->
+                                <div class="offcanvas-footer p-3 border-top">
+
+                                    <div class="d-flex justify-content-end gap-2">
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-primary"
+                                            id="btnCreer"
+                                        >
+                                            Créer
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary"
+                                            data-bs-dismiss="offcanvas"
+                                        >
+                                            Annuler
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
                                             </form>
+
                                         </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
+                            <!-- ===================================================== -->
+                            <!-- OFFCANVAS : MODIFIER UN ARTICLE -->
+                            <!-- ===================================================== -->
+                            <div
+                                class="offcanvas offcanvas-end"
+                                tabindex="-1"
+                                id="offcanvasModifierArticle"
+                                aria-labelledby="offcanvasModifierArticleLabel"
+                                style="width: 700px;"
+                            >
+
+                                <!-- HEADER -->
+                                <div class="offcanvas-header">
+
+                                    <h5
+                                        class="offcanvas-title"
+                                        id="offcanvasModifierArticleLabel"
+                                    >
+                                        Editer article
+                                    </h5>
+
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="offcanvas"
+                                        aria-label="Fermer"
+                                    ></button>
+
+                                </div>
+
+
+                                <!-- BODY -->
+                                <div class="offcanvas-body">
+
+                                    <div class="card border-primary rounded-3">
+
+                                        <div class="card-body">
+
+                                            <form id="formModifierArticle">
+
+                                                <!-- ID caché -->
+                                                <input
+                                                    type="hidden"
+                                                    id="modifierArticleId"
+                                                >
+
+
+                                                <!-- Désignation -->
+                                                <div class="mb-3">
+
+                                                    <label
+                                                        for="modifierDesignation"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier la désignation de l'article
+                                                    </label>
+
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="modifierDesignation"
+                                                        placeholder="Désignation de l'article"
+                                                        required
+                                                    >
+
+                                                </div>
+
+
+                                                <!-- Type -->
+                                                <div class="mb-3">
+
+                                                    <label
+                                                        for="modifierType"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier le type d'article
+                                                    </label>
+
+                                                    <select
+                                                        class="form-select"
+                                                        id="modifierType"
+                                                        required
+                                                    >
+
+                                                        <option value="Expertise">
+                                                            Expertise
+                                                        </option>
+
+                                                        <option value="Développement">
+                                                            Développement
+                                                        </option>
+
+                                                        <option value="Formation">
+                                                            Formation
+                                                        </option>
+
+                                                        <option value="Conseil">
+                                                            Conseil
+                                                        </option>
+
+                                                        <option value="Produit">
+                                                            Produit
+                                                        </option>
+
+                                                    </select>
+
+                                                </div>
+
+
+                                                <!-- Unité -->
+                                                <div class="mb-3">
+
+                                                    <label
+                                                        for="modifierUnite"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier l'unité de mesure de l'article
+                                                    </label>
+
+                                                    <select
+                                                        class="form-select"
+                                                        id="modifierUnite"
+                                                        required
+                                                    >
+
+                                                        <option value="Unité">
+                                                            Unité
+                                                        </option>
+
+                                                        <option value="Heure">
+                                                            Heure
+                                                        </option>
+
+                                                        <option value="Jour">
+                                                            Jour
+                                                        </option>
+
+                                                        <option value="Mois">
+                                                            Mois
+                                                        </option>
+
+                                                        <option value="Forfait">
+                                                            Forfait
+                                                        </option>
+
+                                                    </select>
+
+                                                </div>
+
+
+                                                <!-- Prix -->
+                                                <div class="mb-3">
+
+                                                    <label
+                                                        for="modifierPrix"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier le prix de l'article
+                                                    </label>
+
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        id="modifierPrix"
+                                                        placeholder="Écrivez le prix de l'article"
+                                                        min="0"
+                                                        required
+                                                    >
+
+                                                </div>
+
+
+                                                <!-- Taxe -->
+                                                <div class="mb-3">
+
+                                                    <label
+                                                        for="modifierTaxe"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier la taxe appliqué à l'article
+                                                    </label>
+
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        id="modifierTaxe"
+                                                        placeholder="Écrivez la taxe appliqué à l'article"
+                                                        min="0"
+                                                        max="100"
+                                                        required
+                                                    >
+
+                                                </div>
+
+
+                                                <!-- Description -->
+                                                <div class="mb-3">
+
+                                                    <label
+                                                        for="modifierDescription"
+                                                        class="form-label fw-semibold"
+                                                    >
+                                                        Modifier la description/les notes à propos de cet article
+                                                    </label>
+
+                                                    <textarea
+                                                        class="form-control"
+                                                        id="modifierDescription"
+                                                        rows="3"
+                                                        placeholder="Rédigez une description ou des notes à propos de cet article"
+                                                    ></textarea>
+
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- ================================================= -->
+                                    <!-- ZONE SUPPRESSION -->
+                                    <!-- ================================================= -->
+
+                                    <div class="card border-danger mt-3">
+
+                                        <div class="card-body">
+
+                                            <h5 class="text-danger fw-bold">
+                                                Supprimez cet article
+                                            </h5>
+
+                                            <p class="text-danger mb-3">
+
+                                                Cette opération est définitive.
+                                                Toutes les informations concernant cet article
+                                                seront supprimées.
+
+                                                Cependant, les devis, acomptes et factures
+                                                émis en rapport avec cet article seront encore
+                                                consultables.
+
+                                            </p>
+
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-danger"
+                                                onclick="supprimerArticleDepuisModification()"
+                                            >
+                                                Supprimer cet article
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- FOOTER -->
+                                <div class="offcanvas-footer p-3 border-top">
+
+                                    <div class="d-flex justify-content-end gap-2">
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary"
+                                            onclick="modifierArticle()"
+                                        >
+                                            Appliquer les modifications
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary"
+                                            data-bs-dismiss="offcanvas"
+                                        >
+                                            Annuler les modifications
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- RECHERCHE -->
                             <div class="mt-5">
+
                                 <div class="mb-3">
-                                    <input type="text" class="form-control w-75" id="formGroupExampleInput"
-                                        placeholder="🔎 Rechercher par numero, titre, client...">
+
+                                    <input
+                                        type="text"
+                                        class="form-control w-75"
+                                        id="rechercheArticle"
+                                        placeholder="🔎 Rechercher un article..."
+                                        oninput="afficherArticles()"
+                                    >
+
                                 </div>
+
+
+                                <!-- TABLEAU -->
                                 <div class="card">
+
                                     <div class="card-body">
+
                                         <div class="table-responsive w-100">
+
                                             <table class="table table-borderless table-sm w-100">
+
                                                 <caption class="text-end">
-                                                    <span>Ligne par page 25 <i class="bi bi-caret-down-fill"></i></span>
-                                                    <span>1-5 de 5</span>
-                                                    <span><i class="bi bi-chevron-left"></i> 1 <i
-                                                            class="bi bi-chevron-right"></i></span>
+
+                                                    <span id="nombreArticles">
+                                                        0 article
+                                                    </span>
+
                                                 </caption>
+
+
                                                 <thead>
+
                                                     <tr class="p-3">
-                                                        <th scope="col">Désignation</th>
-                                                        <th scope="col">Type d'article</th>
-                                                        <th scope="col">Unité</th>
-                                                        <th scope="col">Prix unitaire</th>
-                                                        <th scope="col">TVA</th>
+
+                                                        <th scope="col">
+                                                            Désignation
+                                                        </th>
+
+                                                        <th scope="col">
+                                                            Type d'article
+                                                        </th>
+
+                                                        <th scope="col">
+                                                            Unité
+                                                        </th>
+
+                                                        <th scope="col">
+                                                            Prix unitaire
+                                                        </th>
+
+                                                        <th scope="col">
+                                                            TVA
+                                                        </th>
+
+                                                        <th scope="col">
+                                                            Actions
+                                                        </th>
+
                                                     </tr>
+
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">Forfait carte de visite</th>
-                                                        <td>Prestation de service</td>
-                                                        <td>Heure</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <div class="d-flex gap-4 justify-content-end">
-                                                                <i class="bi bi-pen-fill fs-5"></i>
-                                                                <i class="bi bi-trash-fill fs-5"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Waké</th>
-                                                        <td>Vente de marchandise</td>
-                                                        <td>Unité</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <div class="d-flex gap-4 justify-content-end">
-                                                                <i class="bi bi-pen-fill fs-5"></i>
-                                                                <i class="bi bi-trash-fill fs-5"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Forfait main</th>
-                                                        <td>Prestation Artistique</td>
-                                                        <td>Heure</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                        <td></td>
-                                                        <td>
-                                                            <div class="d-flex gap-4 justify-content-end">
-                                                                <i class="bi bi-pen-fill fs-5"></i>
-                                                                <i class="bi bi-trash-fill fs-5"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Assistance Admin</th>
-                                                        <td>Prestation de services</td>
-                                                        <td>Unité</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                        <td>20%</td>
-                                                        <td>
-                                                            <div class="d-flex gap-4 justify-content-end">
-                                                                <i class="bi bi-pen-fill fs-5"></i>
-                                                                <i class="bi bi-trash-fill fs-5"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Template de site web</th>
-                                                        <td>Prestation de services</td>
-                                                        <td>Unité</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                        <td>15%</td>
-                                                        <td>
-                                                            <div class="d-flex gap-4 justify-content-end">
-                                                                <i class="bi bi-pen-fill fs-5"></i>
-                                                                <i class="bi bi-trash-fill fs-5"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Développement web</th>
-                                                        <td>Prestation de services</td>
-                                                        <td>Unité</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                        <td>20%</td>
-                                                        <td>
-                                                            <div class="d-flex gap-4 justify-content-end">
-                                                                <i class="bi bi-pen-fill fs-5"></i>
-                                                                <i class="bi bi-trash-fill fs-5"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+
+
+                                                <tbody id="listeArticles">
+
+                                                    <!-- Les articles seront générés par JavaScript -->
+
                                                 </tbody>
+
                                             </table>
+
                                         </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </div>
 
                     </div>
@@ -1694,6 +2153,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+
+        <script src="Article.js"></script>
 </body>
 
 </html>
