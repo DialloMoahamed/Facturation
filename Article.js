@@ -5,7 +5,11 @@ const tbody = document.getElementById("listeArticles");
 const form = document.getElementById("articleForm");
 
 
-function preparerCreation() {
+// =====================================================
+// Afficher UN ARTICLE
+// =====================================================
+
+function afficherArticle() {
     
     tbody.innerHTML = "";
 
@@ -28,6 +32,11 @@ function preparerCreation() {
     });
 
 }
+
+
+// =====================================================
+// AJOUTER UN ARTICLE
+// =====================================================
 
 form.addEventListener("submit", (e) => {
 
@@ -69,7 +78,7 @@ form.addEventListener("submit", (e) => {
 
     localStorage.setItem("articles", JSON.stringify(articles));
 
-    preparerCreation();
+    afficherArticle();
 
     form.reset();
 
@@ -83,7 +92,7 @@ form.addEventListener("submit", (e) => {
 
 
 // =====================================================
-// MODIFIER UN ANIMAL
+// MODIFIER UN ARTICLE
 // =====================================================
 
 function openEditModal(id) {
@@ -185,6 +194,12 @@ document
         animal.prix =
             document.getElementById("modifierPrix").value;
 
+        animal.taxe =
+            document.getElementById("modifierTaxe").value;
+
+        animal.description =    
+        document.getElementById("modifierDescription").value;    
+
         // Sauvegarder dans localStorage
 
         localStorage.setItem(
@@ -194,7 +209,7 @@ document
 
         // Réafficher le tableau
 
-        afficherAnimaux();
+        afficherArticle();
 
         // Fermer la modale
 
@@ -204,7 +219,98 @@ document
 
         bsOffcanvas.show();
 
-        console.log("Animal modifié :", animal);
+        console.log("Article modifié :", article);
 });
 
-preparerCreation();
+
+// =====================================================
+// PRÉPARER LA SUPPRESSION
+// =====================================================
+
+let articleToDelete = null;
+
+function askDelete(id) {
+
+    const article = articles.find(
+        (article) => article.id === Number(id)
+    );
+
+    if (!article) {
+        console.log("Article introuvable");
+        return;
+    }
+
+    // Garder l'ID de l'animal à supprimer
+
+    articleToDelete = article.id;
+
+    // Afficher son RFID dans la modale
+
+    document.getElementById("deleteArticle").textContent =
+        article.designation;
+
+    // Ouvrir la modale
+
+    const modal = new bootstrap.Modal(
+        document.getElementById("sprimerModal")
+    );
+
+    modal.show();
+}
+
+
+// =====================================================
+// CONFIRMER LA SUPPRESSION
+// =====================================================
+
+document
+    .getElementById("confirmDeleteAnimal")
+    .addEventListener("click", () => {
+
+
+        if (animalToDelete === null) {
+            return;
+        }
+
+        // Trouver la position de l'animal
+
+        const index = animaux.findIndex(
+            (animal) => animal.id === animalToDelete
+        );
+
+        if (index === -1) {
+            return;
+        }
+
+        // Supprimer l'animal
+
+        animaux.splice(index, 1);
+
+        // Sauvegarder
+
+        localStorage.setItem(
+            "animaux",
+            JSON.stringify(animaux)
+        );
+
+        // Réafficher
+
+        afficherAnimaux();
+        afficherStatistiques();
+
+        // Fermer la modale
+
+        const modal = bootstrap.Modal.getInstance(
+            document.getElementById("sprimerModal")
+        );
+
+        modal.hide();
+
+        // Réinitialiser
+
+        animalToDelete = null;
+
+        console.log("Animal supprimé");
+});
+
+afficherArticle();
