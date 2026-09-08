@@ -24,8 +24,8 @@ function afficherArticle() {
             <td>${article.taxe} %</td>
             <td>
                 <div class="d-flex gap-4">
-                    <i class="bi bi-pen-fill fs-5"></i>
-                    <i class="bi bi-trash-fill fs-5"></i>
+                    <i class="bi bi-pen-fill fs-5" onclick="openEditModal(${article.id})"></i>
+                    <i class="bi bi-trash-fill fs-5" onclick="askDelete(${article.id})"></i>
                 </div>
             </td>
         </tr>`;
@@ -85,9 +85,10 @@ form.addEventListener("submit", (e) => {
     const Offcanvas = document.getElementById("offcanvasCreerArticle");
     const bsOffcanvas = new bootstrap.Offcanvas(Offcanvas);
 
+    if (bsOffcanvas) {
+        bsOffcanvas.hide();
+    }
 
-    bsOffcanvas.hide();
-    
 });
 
 
@@ -108,31 +109,31 @@ function openEditModal(id) {
     }
 
 
-    // Remplir la modale avec les informations de l'animal
+    // Remplir la modale avec les informations de l'article
 
     document.getElementById("modifierArticleId").value =
-        animal.id;
+        article.id;
 
     document.getElementById("modifierDesignation").value =
-        animal.designation;
+        article.designation;
 
     document.getElementById("modifierType").value =
-        animal.type;
+        article.type;
 
     document.getElementById("modifierUnite").value =
-        animal.unite;
+        article.unite;
 
     document.getElementById("modifierPrix").value =
-        animal.prix;
+        article.prix;
 
     document.getElementById("modifierTaxe").value =
-        animal.taxe;
+        article.taxe;
 
     document.getElementById("modifierDescription").value =
-        animal.description;
+        article.description;
 
 
-    // Garder l'ID de l'animal à modifier
+    // Garder l'ID de l'article à modifier
 
     document
         .getElementById("formModifierArticle")
@@ -141,11 +142,12 @@ function openEditModal(id) {
 
     // Ouvrir la offcanvas
 
-    const Offcanvas = document.getElementById("offcanvasModifierArticleLabel");
-    const bsOffcanvas = new bootstrap.Offcanvas(Offcanvas);
+    const Offcanvase = document.getElementById("offcanvasModifierArticle");
+    const bsOffcanvase = new bootstrap.Offcanvas(Offcanvase);
 
-
-    bsOffcanvas.show();
+    if (bsOffcanvase) {
+        bsOffcanvase.show();
+    }
 
 }
 
@@ -154,74 +156,57 @@ function openEditModal(id) {
 // SAUVEGARDER LES MODIFICATIONS
 // =====================================================
 
-document
-    .getElementById("formModifierArticle")
-    .addEventListener("submit", (e) => {
+function modifierArticle() {
 
-        e.preventDefault();
+    const id = Number(
+        document.getElementById("modifierArticleId").value
+    );
 
-        // Récupérer l'ID de l'animal
+    const article = articles.find(
+        (article) => article.id === id
+    );
 
-        const id = Number(
-            e.target.getAttribute("data-id")
-        );
+    if (!article) {
+        console.log("Article introuvable");
+        return;
+    }
 
-        // Rechercher l'animal
+    article.designation =
+        document.getElementById("modifierDesignation").value;
 
-        const article = articles.find(
-            (article) => article.id === id
-        );
+    article.type =
+        document.getElementById("modifierType").value;
 
-        if (!article) {
-            console.log("Article introuvable");
-            return;
-        }
+    article.unite =
+        document.getElementById("modifierUnite").value;
 
-        // Modifier ses informations
+    article.prix =
+        Number(document.getElementById("modifierPrix").value);
 
-        animal.id =
-            document.getElementById("modifierArticleId").value;
+    article.taxe =
+        Number(document.getElementById("modifierTaxe").value);
 
-        animal.designation =
-            document.getElementById("modifierDesignation").value;
+    article.description =
+        document.getElementById("modifierDescription").value;
 
-        animal.type =
-            document.getElementById("modifierType").value;
+    localStorage.setItem(
+        "articles",
+        JSON.stringify(articles)
+    );
 
-        animal.unite =
-            document.getElementById("modifierUnite").value;
+    afficherArticle();
 
-        animal.prix =
-            document.getElementById("modifierPrix").value;
+    const Offcanva =
+        document.getElementById("offcanvasModifierArticle");
 
-        animal.taxe =
-            document.getElementById("modifierTaxe").value;
+    const bOffcanvas =
+        new bootstrap.Offcanvas(Offcanva);
 
-        animal.description =    
-        document.getElementById("modifierDescription").value;    
+    if (bOffcanvas) {
+        bOffcanvas.hide();
+    }    
 
-        // Sauvegarder dans localStorage
-
-        localStorage.setItem(
-            "articles",
-            JSON.stringify(articles)
-        );
-
-        // Réafficher le tableau
-
-        afficherArticle();
-
-        // Fermer la modale
-
-        const Offcanvas = document.getElementById("offcanvasModifierArticleLabel");
-        const bsOffcanvas = new bootstrap.Offcanvas(Offcanvas);
-
-
-        bsOffcanvas.show();
-
-        console.log("Article modifié :", article);
-});
-
+}
 
 // =====================================================
 // PRÉPARER LA SUPPRESSION
@@ -240,7 +225,7 @@ function askDelete(id) {
         return;
     }
 
-    // Garder l'ID de l'animal à supprimer
+    // Garder l'ID de l'article à supprimer
 
     articleToDelete = article.id;
 
@@ -251,11 +236,13 @@ function askDelete(id) {
 
     // Ouvrir la modale
 
-    const modal = new bootstrap.Modal(
-        document.getElementById("sprimerModal")
-    );
+    const modal = document.getElementById("sprimerModal");
+    const bsModal = new bootstrap.Modal(modal);
 
-    modal.show();
+    if (bsModal) {
+        bsModal.show();
+    }
+
 }
 
 
@@ -264,53 +251,53 @@ function askDelete(id) {
 // =====================================================
 
 document
-    .getElementById("confirmDeleteAnimal")
+    .getElementById("confirmDeleteArticle")
     .addEventListener("click", () => {
 
 
-        if (animalToDelete === null) {
+        if (articleToDelete === null) {
             return;
         }
 
-        // Trouver la position de l'animal
+        // Trouver la position de l'article
 
-        const index = animaux.findIndex(
-            (animal) => animal.id === animalToDelete
+        const index = articles.findIndex(
+            (article) => article.id === articleToDelete
         );
 
         if (index === -1) {
             return;
         }
 
-        // Supprimer l'animal
+        // Supprimer l'article
 
-        animaux.splice(index, 1);
+        articles.splice(index, 1);
 
         // Sauvegarder
 
         localStorage.setItem(
-            "animaux",
-            JSON.stringify(animaux)
+            "articles",
+            JSON.stringify(articles)
         );
 
         // Réafficher
 
-        afficherAnimaux();
-        afficherStatistiques();
+        afficherArticle();
 
         // Fermer la modale
 
-        const modal = bootstrap.Modal.getInstance(
-            document.getElementById("sprimerModal")
-        );
+        const modal = document.getElementById("sprimerModal");
+        const bsModal = new bootstrap.Modal(modal);
 
-        modal.hide();
+        if (bsModal) {
+            bsModal.hide();
+        }
 
         // Réinitialiser
 
-        animalToDelete = null;
+        articleToDelete = null;
 
-        console.log("Animal supprimé");
+        alert("Article supprimé avec succés");
 });
 
 afficherArticle();
