@@ -235,7 +235,7 @@ document
 
     // Réinitialiser
 
-    articleToDelete = null;
+    clientToDelete = null;
 
     alert("Client supprimé avec succés");
   });

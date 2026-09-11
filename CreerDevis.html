@@ -46,13 +46,15 @@
                         </label>
 
                         <div class="input-group">
-
-                            <input type="text" class="form-control rounded-start-4 fw-bold" placeholder="Nom du client"
+                            <select id="clientDevis"
+                                class="form-select rounded-start-4 fw-bold"
                                 style="height:45px;">
 
-                            <button class="btn btn-light border rounded-end-4 px-3">
-                                <i class="bi bi-chevron-down"></i>
-                            </button>
+                                <option value="">
+                                    Sélectionnez un client
+                                </option>
+
+                            </select>
 
                         </div>
 
@@ -66,7 +68,7 @@
                     </div>
                 </div>
 
-                <!-- ARTICLE -->
+               <!-- ARTICLES -->
                 <div class="card border-0 rounded-4 shadow-sm mb-3">
 
                     <div class="card-body p-3">
@@ -74,134 +76,76 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
 
                             <h5 class="text-secondary m-0">
-                                Article
+                                Articles
                             </h5>
-
-                            <div class="d-flex gap-2">
-
-                                <i class="bi bi-copy text-secondary"></i>
-                                <i class="bi bi-trash text-secondary"></i>
-                                <i class="bi bi-chevron-up text-secondary"></i>
-
-                            </div>
 
                         </div>
 
+                        <!-- LES CARTES DES ARTICLES VONT APPARAÎTRE ICI -->
+                        <div id="conteneurArticlesDevis"></div>
+
+                        <!-- AJOUTER UN ARTICLE -->
                         <div class="border border-primary rounded-4 p-3">
 
                             <small class="fw-bold text-secondary">
-                                #1 Nom de l'article
+                                Ajouter un article
                             </small>
 
                             <div class="row mt-2 g-2">
 
                                 <div class="col-md-8">
 
-                                    <label class="fw-bold small mb-2">
+                                    <label for="articleDevis"
+                                        class="fw-bold small mb-2">
                                         Désignation *
                                     </label>
 
-                                    <input type="text" class="form-control" placeholder="Désignation de l'article"
+                                    <select
+                                        id="articleDevis"
+                                        class="form-select"
                                         style="height:42px; border-radius:12px;">
+
+                                        <option value="">
+                                            Sélectionnez un article
+                                        </option>
+
+                                    </select>
 
                                 </div>
 
                                 <div class="col-md-4">
 
                                     <label class="fw-bold small mb-2">
-                                        Référence
-                                    </label>
-
-                                    <input type="text" class="form-control" placeholder="Référence"
-                                        style="height:42px; border-radius:12px;">
-
-                                </div>
-
-                            </div>
-
-                            <div class="mt-3">
-
-                                <label class="fw-bold small mb-2">
-                                    Description
-                                </label>
-
-                                <textarea class="form-control rounded-4" rows="4"></textarea>
-
-                            </div>
-
-                            <div class="mt-3">
-
-                                <label class="fw-bold small mb-2">
-                                    Type d'article *
-                                </label>
-
-                                <input type="text" class="form-control" placeholder="Type d'article"
-                                    style="height:42px; border-radius:12px;">
-
-                            </div>
-
-                            <div class="row mt-3 g-2">
-
-                                <div class="col-md-3">
-
-                                    <label class="fw-bold small mb-2">
-                                        Unité
-                                    </label>
-
-                                    <input type="text" class="form-control" placeholder="Unité"
-                                        style="height:42px; border-radius:12px;">
-
-                                </div>
-
-                                <div class="col-md-3">
-
-                                    <label class="fw-bold small mb-2">
                                         Quantité *
                                     </label>
 
-                                    <input type="text" class="form-control" placeholder="00"
+                                    <input
+                                        type="number"
+                                        id="quantiteArticleDevis"
+                                        class="form-control"
+                                        min="1"
+                                        value="1"
                                         style="height:42px; border-radius:12px;">
 
                                 </div>
 
-                                <div class="col-md-3">
+                            </div>
 
-                                    <label class="fw-bold small mb-2">
-                                        Prix HT *
-                                    </label>
+                            <div class="d-flex justify-content-end mt-3">
 
-                                    <input type="text" class="form-control" placeholder="00"
-                                        style="height:42px; border-radius:12px;">
+                                <button
+                                    type="button"
+                                    id="ajouterArticleDevis"
+                                    class="btn btn-primary rounded-3">
 
-                                </div>
+                                    <i class="bi bi-plus"></i>
+                                    Ajouter l'article
 
-                                <div class="col-md-3">
-
-                                    <label class="fw-bold small mb-2">
-                                        TVA
-                                    </label>
-
-                                    <input type="text" class="form-control" placeholder="%"
-                                        style="height:42px; border-radius:12px;">
-
-                                </div>
+                                </button>
 
                             </div>
 
                         </div>
-
-                    </div>
-
-                </div>
-
-                <!-- AJOUT -->
-                <div class="card border-0 rounded-4 shadow-sm mb-3">
-
-                    <div class="card-body py-2">
-
-                        <button class="btn fw-bold text-primary border-0">
-                            + Ajouter un article
-                        </button>
 
                     </div>
 
@@ -220,7 +164,7 @@
                             Veuillez entrer une date d'émission
                         </label>
 
-                        <input type="text" class="form-control fw-bold" value="00/00/0000"
+                        <input type="date" class="form-control fw-bold" value="00/00/0000"
                             style="height:45px; border-radius:12px;">
 
                         <small class="text-secondary mt-2 d-block">
@@ -244,44 +188,12 @@
                             Veuillez entrer une date limite
                         </label>
 
-                        <input type="text" class="form-control fw-bold" value="00/00/0000"
+                        <input type="date" class="form-control fw-bold" value="00/00/0000"
                             style="height:45px; border-radius:12px;">
 
                         <small class="text-secondary mt-2 d-block">
                             Valide jusqu'au 00/00/0000
                         </small>
-
-                    </div>
-
-                </div>
-
-                <!-- LANGUE -->
-                <div class="card border-0 rounded-4 shadow-sm mb-3">
-
-                    <div class="card-body p-3 d-flex justify-content-between align-items-center">
-
-                        <div>
-
-                            <h5 class="text-secondary">
-                                Langue
-                            </h5>
-
-                            <small class="fw-bold d-block">
-                                Sélectionner une langue
-                            </small>
-
-                            <small class="text-secondary">
-                                Langue actuelle : Français
-                            </small>
-
-                        </div>
-
-                        <select class="form-select fw-bold" style="width:180px; height:45px; border-radius:12px;">
-
-                            <option>Français</option>
-                            <option>Anglais</option>
-
-                        </select>
 
                     </div>
 
@@ -314,46 +226,6 @@
                             <option>EURO</option>
 
                         </select>
-
-                    </div>
-
-                </div>
-
-                <!-- FILE -->
-                <div class="card border-0 rounded-4 shadow-sm">
-
-                    <div class="card-body p-3">
-
-                        <div class="d-flex justify-content-between align-items-center">
-
-                            <div>
-
-                                <h5 class="text-secondary">
-                                    Pièces Jointes
-                                </h5>
-
-                                <small class="fw-bold">
-                                    Ajouter des documents
-                                </small>
-
-                            </div>
-
-                            <button class="btn btn-primary fw-bold rounded-3">
-                                + Ajouter
-                            </button>
-
-                        </div>
-
-                        <div class="border border-2 border-secondary rounded-4 mt-3 p-4 text-center"
-                            style="border-style:dashed !important;">
-
-                            <i class="bi bi-file-earmark fs-2"></i>
-
-                            <h6 class="fw-bold mt-2">
-                                + Ajouter un document
-                            </h6>
-
-                        </div>
 
                     </div>
 
@@ -399,15 +271,15 @@
                                         Devis
                                     </h4>
 
-                                    <p class="fw-bold m-0">
+                                    <p id="nomClientPreview" class="fw-bold m-0">
                                         Nom du client
                                     </p>
 
-                                    <small class="d-block">
-                                        Boite postale et ville du client
+                                    <small id="adresseClientPreview" class="d-block">
+                                        Adresse du client
                                     </small>
 
-                                    <small>
+                                    <small id="localisationClientPreview">
                                         Localisation du client
                                     </small>
 
@@ -425,23 +297,19 @@
                                 <div class="col-6">
 
                                     <h6 class="fw-bold">
-                                        Nom du prestataire
+                                        Mohamed Attahir Diallo
                                     </h6>
 
                                     <small class="d-block">
-                                        Boite postale et ville du prestataire
+                                        BP 1000 Niamey Niger
                                     </small>
 
                                     <small class="d-block">
-                                        Localisation du prestataire
-                                    </small>
-
-                                    <small class="d-block">
-                                        Numéro de tel prestataire
+                                        +227 74 30 38 11
                                     </small>
 
                                     <small>
-                                        Email du prestataire
+                                        mohamedattahirdiallo@gmail.com
                                     </small>
 
                                 </div>
@@ -470,9 +338,7 @@
                                 <table class="table table-sm align-middle">
 
                                     <thead class="border-bottom border-primary border-2">
-
                                         <tr class="text-primary small">
-
                                             <th>#</th>
                                             <th>Désignation et description</th>
                                             <th>Unité</th>
@@ -481,31 +347,13 @@
                                             <th>TVA</th>
                                             <th>Montant HT</th>
                                             <th>Montant TTC</th>
-
+                                            <th>Action</th>
                                         </tr>
-
                                     </thead>
 
-                                    <tbody class="small border-bottom border-primary border-2">
-
-                                        <tr>
-
-                                            <td>1</td>
-                                            <td>
-                                                <strong>Désignation</strong><br>
-                                                Description de l'article<br>
-                                                <small>paragraphe 1</small><br>
-                                                <small>paragraphe 2</small>
-                                            </td>
-                                            <td class="text-center">Unité</td>
-                                            <td class="text-center">0</td>
-                                            <td class="text-center">1000</td>
-                                            <td class="text-center">00%</td>
-                                            <td class="text-center">000000</td>
-                                            <td class="text-center">000000</td>
-
-                                        </tr>
-
+                                    <tbody
+                                        id="listeArticlesDevis"
+                                        class="small border-bottom border-primary border-2">
                                     </tbody>
 
                                 </table>
@@ -523,16 +371,16 @@
                                         Délai de paiement
                                     </h6>
 
-                                    <p class="m-0">
-                                        30 jours
+                                    <p class="m-0" id="delai">
+                                        Illimité
                                     </p>
 
                                     <h6 class="fw-bold mt-4">
                                         Moyen de paiement
                                     </h6>
 
-                                    <p class="m-0">
-                                        Virement bancaire
+                                    <p class="m-0" id="moyenPayement">
+                                        Tous
                                     </p>
 
                                 </div>
@@ -544,24 +392,18 @@
                                         <div style="min-width: 250px;">
 
                                             <div class="d-flex justify-content-between small mb-2">
-
-                                                <strong>Total HT</strong>
-                                                <span>10000</span>
-
+    <strong>Total HT</strong>
+    <span id="totalHTDevis">0</span>
                                             </div>
 
                                             <div class="d-flex justify-content-between small mb-2">
-
                                                 <strong>TVA</strong>
-                                                <span>2000</span>
-
+                                                <span id="totalTVADevis">0</span>
                                             </div>
 
                                             <div class="d-flex justify-content-between small">
-
                                                 <strong>Total TTC</strong>
-                                                <span>12000</span>
-
+                                                <span id="totalTTCDevis">0</span>
                                             </div>
 
                                         </div>
@@ -578,6 +420,15 @@
 
                 </div>
 
+                <div class="mt-3">
+
+                    <button type="button" id="sauvegarde" class="btn btn-primary fw-bold px-4 rounded-3">
+
+                        Sauvegarder
+
+                    </button>
+
+                </div>
             </div>
 
         </div>
@@ -586,6 +437,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+
+    <script src="devis.js"></script>
 </body>
 
 </html>
