@@ -577,6 +577,19 @@ function afficherDevis() {
 
             document.getElementById("numeroDevisOffcanvas").textContent =
             devisSelectionne.numero;
+
+            document.getElementById("nomClientOffcanvas").textContent =
+            devisSelectionne.client2.designation;
+
+            document.getElementById("prixDevisOffcanvas").textContent = 
+            devisSelectionne.totalHT;
+
+            document.getElementById("dateDevisOffcanvas").textContent = 
+            devisSelectionne.date;
+
+            document.getElementById("actionDevisOffcanvas").innerHTML = 
+            devisSelectionne.status;
+            
             console.log(devisSelectionne);
 
         });

@@ -611,11 +611,11 @@ Tu vas utiliser `slice()` pour afficher uniquement la partie du tableau correspo
 
 À la fin des exercices, tu dois vraiment connaître ces trois méthodes :
 
-| Méthode | Utilisation |
-|---|---|
-| `find()` | trouver **un** élément |
-| `filter()` | trouver **plusieurs** éléments |
-| `slice()` | prendre une partie d'un tableau |
+| Méthode     | Utilisation                           |
+| ------------ | ------------------------------------- |
+| `find()`   | trouver**un** élément         |
+| `filter()` | trouver**plusieurs** éléments |
+| `slice()`  | prendre une partie d'un tableau       |
 
 ### À retenir
 
