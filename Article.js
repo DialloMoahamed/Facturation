@@ -2,7 +2,7 @@ const articles = JSON.parse(localStorage.getItem("articles")) || [];
 
 const tbody = document.getElementById("listeArticles");
 
-const form = document.getElementById("articleForm");
+const formulaireArticle = document.getElementById("articleForm");
 
 
 // =====================================================
@@ -38,7 +38,7 @@ function afficherArticle() {
 // AJOUTER UN ARTICLE
 // =====================================================
 
-form.addEventListener("submit", (e) => {
+formulaireArticle.addEventListener("submit", (e) => {
 
     e.preventDefault();
 
@@ -80,7 +80,7 @@ form.addEventListener("submit", (e) => {
 
     afficherArticle();
 
-    form.reset();
+    formulaireArticle.reset();
 
     const Offcanvas = document.getElementById("offcanvasCreerArticle");
     const bsOffcanvas = new bootstrap.Offcanvas(Offcanvas);

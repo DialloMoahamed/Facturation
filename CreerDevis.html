@@ -164,11 +164,11 @@
                             Veuillez entrer une date d'émission
                         </label>
 
-                        <input type="date" class="form-control fw-bold" value="00/00/0000"
+                        <input type="date" id="dateEmission" class="form-control fw-bold"
                             style="height:45px; border-radius:12px;">
 
                         <small class="text-secondary mt-2 d-block">
-                            Date d'émission le 00/00/0000
+                            Date d'émission le <span id="emission"></span>
                         </small>
 
                     </div>
@@ -188,11 +188,15 @@
                             Veuillez entrer une date limite
                         </label>
 
-                        <input type="date" class="form-control fw-bold" value="00/00/0000"
-                            style="height:45px; border-radius:12px;">
+                        <!-- <input type="date" id="dateValidite" class="form-control fw-bold"
+                            style="height:45px; border-radius:12px;"> -->
+
+                        <input type="number" id="dateValidite" class="form-control fw-bold"
+                            placeholder="Nombre de jours"
+                            style="height:45px; border-radius:12px;">    
 
                         <small class="text-secondary mt-2 d-block">
-                            Valide jusqu'au 00/00/0000
+                            Valide pendant <span id="validité"></span>
                         </small>
 
                     </div>
@@ -215,15 +219,18 @@
                             </small>
 
                             <small class="text-secondary">
-                                Devise actuelle : FCFA
+                                Devise actuelle : <span id="deviseA"></span>
                             </small>
 
                         </div>
 
-                        <select class="form-select fw-bold" style="width:180px; height:45px; border-radius:12px;">
+                        <select id="deviseValue" class="form-select" style="width:180px; height:45px; border-radius:12px; font-size: x-small;">
 
-                            <option>FCFA</option>
-                            <option>EURO</option>
+                            <option value="">Selectionner une devise</option>
+                            <option value="FCFA">FCFA</option>
+                            <option value="€">€</option>
+                            <option value="$">$</option>
+                            <option value="£">£</option>
 
                         </select>
 
@@ -317,15 +324,15 @@
                                 <div class="col-6 text-end">
 
                                     <small class="d-block">
-                                        <strong>N° du document</strong> 000000
+                                        <strong>N° du document</strong> <span id="numeroDocu"></span>
                                     </small>
 
                                     <small class="d-block">
-                                        <strong>Date d'émission</strong> 00-00-2025
+                                        <strong>Date d'émission</strong> <span id="emission2"></span>
                                     </small>
 
                                     <small>
-                                        <strong>Date de validité</strong> 00-00-2025
+                                        <strong>Date de validité</strong> <span id="validité2"></span>
                                     </small>
 
                                 </div>
@@ -392,18 +399,18 @@
                                         <div style="min-width: 250px;">
 
                                             <div class="d-flex justify-content-between small mb-2">
-    <strong>Total HT</strong>
-    <span id="totalHTDevis">0</span>
+                                                <strong>Total HT</strong>
+                                                <span><span id="totalHTDevis">0 </span> <span id="devise1">FCFA</span></span>
                                             </div>
 
                                             <div class="d-flex justify-content-between small mb-2">
                                                 <strong>TVA</strong>
-                                                <span id="totalTVADevis">0</span>
+                                                <span><span id="totalTVADevis">0 </span> <span id="devise2">FCFA</span></span>
                                             </div>
 
                                             <div class="d-flex justify-content-between small">
                                                 <strong>Total TTC</strong>
-                                                <span id="totalTTCDevis">0</span>
+                                                <span><span id="totalTTCDevis">0 </span> <span id="devise3">FCFA</span></span>
                                             </div>
 
                                         </div>

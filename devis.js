@@ -1,8 +1,8 @@
 const devis = JSON.parse(localStorage.getItem("devis")) || [];
 
-const clients = JSON.parse(localStorage.getItem("clients")) || [];
+const clientsDevis = JSON.parse(localStorage.getItem("clients")) || [];
 
-const articles = JSON.parse(localStorage.getItem("articles")) || [];
+const articlesDevis = JSON.parse(localStorage.getItem("articles")) || [];
 
 const articlesDuDevis = [];
 
@@ -45,7 +45,7 @@ const ajouterArticleDevis =
 const sauvegarde = document.getElementById("sauvegarde");  
 
 if (selectClient) {
-    clients.forEach((client) => {
+    clientsDevis.forEach((client) => {
         const option = document.createElement("option");
 
         option.value = client.id;
@@ -59,7 +59,7 @@ if (selectClient) {
 
         const clientId = Number(selectClient.value);
 
-        const client = clients.find(
+        const client = clientsDevis.find(
             (client) => client.id === clientId
         );
 
@@ -84,7 +84,7 @@ if (selectClient) {
 
 if (selectArticle) {
 
-    articles.forEach((article) => {
+    articlesDevis.forEach((article) => {
     const option = document.createElement("option");
 
     option.value = article.id;
@@ -99,7 +99,7 @@ if (selectArticle) {
 
     const articleId = Number(selectArticle.value);
 
-    const article = articles.find(
+    const article = articlesDevis.find(
         (article) => article.id === articleId
     );
 
@@ -470,6 +470,27 @@ function toggleArticleDevis(index) {
     }
 }
 
+function changerStatutDevis(nouveauStatut) {
+
+    const devisSelectionne = devis.find((devi) => {
+        return devi.numero === numeroDevisActuel;
+    });
+
+    if (!devisSelectionne) {
+        return;
+    }
+
+    devisSelectionne.status = nouveauStatut;
+
+    localStorage.setItem("devis", JSON.stringify(devis));
+
+    document.getElementById("statutDevisOffcanvas").textContent =
+        nouveauStatut;
+
+    afficherDevis();
+
+}
+
 if (selectClient && selectArticle) {
     sauvegarde.addEventListener("click", () => {
 
@@ -482,7 +503,7 @@ if (selectClient && selectArticle) {
 
     const clientId2 = Number(selectClient.value);
 
-    const client2 = clients.find(
+    const client2 = clientsDevis.find(
         (client) => client.id === clientId2
     );
 
@@ -510,18 +531,18 @@ if (selectClient && selectArticle) {
 
     console.log(numero);
     
-    const nouveauDevis = {
-        clientId2,
-        client2,
-        articlesDuDevis,
-        totalHT,
-        totalTVA,
-        totalTTC,
-        numero,
-        date,
-        status: "signé"
-
-    };
+const nouveauDevis = {
+    clientId2,
+    client2,
+    articlesDuDevis,
+    totalHT,
+    totalTVA,
+    totalTTC,
+    numero,
+    dateEmission: inputDateEmission.value,
+    validite: Number(inputDateValidite.value),
+    status: "signé"
+};
 
     devis.push(nouveauDevis);
 
@@ -536,7 +557,7 @@ if (selectClient && selectArticle) {
 
 
 let tbody2 = document.getElementById("listeDevis");
-console.log(tbody2);
+let numeroDevisActuel = null;
 
 
 function afficherDevis() {
@@ -575,27 +596,193 @@ function afficherDevis() {
                 return devi.numero === numeroDevis;
             });
 
+            numeroDevisActuel = numeroDevis;
+
             document.getElementById("numeroDevisOffcanvas").textContent =
             devisSelectionne.numero;
 
             document.getElementById("nomClientOffcanvas").textContent =
             devisSelectionne.client2.designation;
 
-            document.getElementById("prixDevisOffcanvas").textContent = 
+            document.getElementById("totalHTOffcanvas").textContent = 
             devisSelectionne.totalHT;
+
+            document.getElementById("totalTTCOffcanvas").textContent = 
+            devisSelectionne.totalTTC;
 
             document.getElementById("dateDevisOffcanvas").textContent = 
             devisSelectionne.date;
 
-            document.getElementById("actionDevisOffcanvas").innerHTML = 
+            document.getElementById("statutDevisOffcanvas").textContent = 
             devisSelectionne.status;
+
+            afficherArticlesOffcanvas(devisSelectionne.articlesDuDevis);
+
+            document.getElementById("clientNomDocument").textContent =
+            devisSelectionne.client2.designation;
+
+            document.getElementById("clientAdresseDocument").textContent =
+            devisSelectionne.client2.adress;
+
+            document.getElementById("clientLocalisationDocument").textContent =
+            devisSelectionne.client2.localisation;
             
             console.log(devisSelectionne);
+
+            const offcanvas = new bootstrap.Offcanvas(
+                document.getElementById("offcanvasdevis")
+            );
+
+            offcanvas.show();
+
+            document.getElementById("totalHTOffcanvas").textContent =
+            devisSelectionne.totalHT;
+
+            document.getElementById("totalTVAOffcanvas").textContent =
+            devisSelectionne.totalTVA;
+
+            document.getElementById("totalTTCOffcanvas").textContent =
+            devisSelectionne.totalTTC;
+
 
         });
     });
     
 }
+
+function afficherArticlesOffcanvas(articles) {
+
+    console.log("Articles reçus :", articles);
+
+    const tbody = document.getElementById("articlesDevisOffcanvas");
+
+    console.log("Tbody :", tbody);
+
+    tbody.innerHTML = "";
+
+    articles.forEach((article, index) => {
+
+        console.log("Article affiché :", article);
+
+        const montantTTC =
+            article.montantHT +
+            (article.montantHT * article.taxe / 100);
+
+        tbody.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+
+                <td>
+                    <strong>${article.designation}</strong>
+                    <br>
+                    ${article.description || ""}
+                </td>
+
+                <td class="text-center">
+                    ${article.unite}
+                </td>
+
+                <td class="text-center">
+                    ${article.quantite}
+                </td>
+
+                <td class="text-center">
+                    ${article.prixHT}
+                </td>
+
+                <td class="text-center">
+                    ${article.taxe}%
+                </td>
+
+                <td class="text-center">
+                    ${article.montantHT}
+                </td>
+
+                <td class="text-center">
+                    ${montantTTC}
+                </td>
+            </tr>
+        `;
+        console.log("HTML du tableau :", tbody.innerHTML);
+    });
+}
+
+const inputDateEmission = document.getElementById("dateEmission");
+const inputDateValidite = document.getElementById("dateValidite");
+
+const textDateEmission = document.getElementById("emission");
+const textDateValidite = document.getElementById("validité");
+
+// inputDateEmission.addEventListener("change", () => {
+
+//     textDateEmission.innerText = inputDateEmission.value;
+//     document.getElementById("emission2").innerText = inputDateEmission.value;
+
+//     console.log("Date d'emmission" ,textDateEmission);
+                
+// });
+
+if (inputDateEmission) {
+
+    inputDateEmission.addEventListener("change", () => {
+
+    textDateEmission.innerText = inputDateEmission.value;
+    document.getElementById("emission2").innerText = inputDateEmission.value
+});
+}
+
+if (inputDateValidite) {
+
+    inputDateValidite.addEventListener("change", () => {
+
+    const dateValidite = inputDateValidite.value;
+
+    textDateValidite.innerText = dateValidite + " jours";
+
+    document.getElementById("validité2").innerText = dateValidite + " jours";
+
+    document.getElementById("delai").innerText = dateValidite + " jours";
+
+    console.log("Date de validité", textDateValidite);
+
+});
+}
+
+
+
+// inputDateValidite.addEventListener("change", () => {
+
+//     const nombreJours = inputDateValidite.value;
+
+//     textDateValidite.innerText = nombreJours + " jours";
+
+//     document.getElementById("validité2").innerText =
+//         nombreJours + " jours";
+
+// });
+
+const deviseValue = document.getElementById("deviseValue");
+
+if (deviseValue) {
+    
+    deviseValue.addEventListener("change", () => {
+
+    const devise1 = document.getElementById("devise1");
+    devise1.innerText = deviseValue.value;
+
+    const devise2 = document.getElementById("devise2");
+    devise2.innerText = deviseValue.value;
+
+    const devise3 = document.getElementById("devise3");
+    devise3.innerText = deviseValue.value;
+
+    const devisActuelle = document.getElementById("deviseA");
+    devisActuelle.innerText = deviseValue.value;
+    console.log(deviseValue.value);
+    
+});
+}
+
 
 if (tbody2) {
     afficherDevis();
