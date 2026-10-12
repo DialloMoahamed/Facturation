@@ -274,200 +274,357 @@
                         <!-- Facture -->
                         <div class="tab-pane fade show active" id="Facture">
                             <div class="d-flex gap-4 justify-content-end">
+
                                 <a class="btn border-primary text-primary"
-                                    href="CreerFacture.html" role="button">
-                                    <i class="bi bi-plus"></i> Nouvelle facture
+                                href="CreerFacture.html"
+                                role="button">
+
+                                    <i class="bi bi-plus"></i>
+                                    Nouvelle facture
+
                                 </a>
-                                 <a class="btn border-primary text-primary"
-                                    href="CreerAcompte.html" role="button">
-                                    <i class="bi bi-plus"></i> Créer un acompte
-                                </a>
-                                <button class="btn border-none text-white" style="background-color: #27375E;"
-                                    type="button">
-                                    <i class="bi bi-database-gear"></i> Automatiser
+
+                                <button class="btn border-none text-white"
+                                        style="background-color: #27375E;"
+                                        type="button">
+
+                                    <i class="bi bi-database-gear"></i>
+                                    Automatiser
+
                                 </button>
+
                             </div>
-                            <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasfacture"
-                                aria-labelledby="offcanvasExampleLabel"
+
+                            <!-- ======================================================
+                                OFFCANVAS FACTURE (même design que l'offcanvas devis)
+                            ======================================================= -->
+                            <div class="offcanvas offcanvas-end border-0"
+                                tabindex="-1"
+                                id="offcanvasfacture"
                                 style="width: 830px; background-color: #f3f3f3;">
 
-                                <!-- Header -->
-                                <div
-                                    class="offcanvas-header bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-start">
+                                <!-- HEADER -->
+                                <div class="offcanvas-header bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-start">
 
-                                    <!-- Infos -->
                                     <div class="d-flex flex-column">
 
                                         <span class="text-muted small">
                                             Document de facturation
                                         </span>
 
-                                        <h2 class="fw-bold m-0">
-                                            D-2023-0112
+                                        <h2 id="numeroFactureOffcanvas" class="fw-bold m-0">
+                                            F-0000-00000
                                         </h2>
 
-                                        <span class="fw-semibold">
+                                        <span id="nomClientFactureOffcanvas" class="fw-semibold">
                                             Nom du client
                                         </span>
 
                                         <div class="d-flex gap-3 mt-1 flex-wrap">
 
-                                            <small class="fw-bold">
-                                                10 000 fcfa HT
+                                            <small id="prixFactureOffcanvas" class="fw-bold">
+                                                0 fcfa HT
                                             </small>
 
-                                            <small class="fw-bold">
-                                                10 000 fcfa TTC
+                                            <small id="ttcFactureOffcanvas" class="fw-bold">
+                                                0 fcfa TTC
                                             </small>
 
-                                            <small>
-                                                <i class="bi bi-clock"></i>
-                                                13 mars 2023
-                                            </small>
-
-                                            <small>
+                                            <small id="dateFactureOffcanvas">
                                                 <i class="bi bi-calendar4-event"></i>
-                                                13 mars 2023
+                                                -
                                             </small>
 
                                         </div>
 
                                     </div>
 
-                                    <!-- Actions -->
-                                    <div class="d-flex align-items-center gap-3">
 
-                                        <span class="badge rounded-pill text-primary px-4 py-2"
-                                            style="background-color: #b9e0ff;">
-                                            Finalisé
-                                        </span>
+                                    <!-- Statut + actions -->
+                                    <div class="dropdown">
 
-                                        <button class="btn border-0 p-0">
+                                        <small id="statutFactureOffcanvas" class="fw-bold">
+                                            en attente
+                                        </small>
+
+                                        <button
+                                            class="btn border-0"
+                                            type="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+
                                             <i class="bi bi-three-dots fs-4"></i>
+
                                         </button>
+
+                                        <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
+                                            <li>
+                                                <button id="modifierFacture" class="dropdown-item" type="button">
+                                                    <i class="bi bi-pencil me-2"></i>
+                                                    Modifier
+                                                </button>
+                                            </li>
+
+                                            <li>
+                                                <button id="marquerFacturePayee" class="dropdown-item" type="button">
+                                                    <i class="bi bi-check-circle me-2"></i>
+                                                    Marquer comme payé
+                                                </button>
+                                            </li>
+
+                                            <li>
+                                                <button id="supprimerFacture" class="dropdown-item text-danger" type="button">
+                                                    <i class="bi bi-trash me-2"></i>
+                                                    Supprimer
+                                                </button>
+                                            </li>
+
+                                        </ul>
 
                                     </div>
 
                                 </div>
 
-                                <!-- Body -->
+
+                                <!-- BODY -->
                                 <div class="offcanvas-body p-4 overflow-auto">
 
-                                    <!-- Tabs -->
-                                    <div class="d-flex justify-content-center gap-5 mb-5">
+                                    <ul class="nav nav-tabs justify-content-center border-0 mb-5"
+                                        id="factureTabs"
+                                        role="tablist">
 
-                                        <div class="text-center">
-
-                                            <p class="fw-semibold text-primary mb-2">
+                                        <li class="nav-item" role="presentation">
+                                            <button
+                                                class="nav-link active fw-semibold text-primary border-0"
+                                                id="previewFacture-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#previewFacture-pane"
+                                                type="button"
+                                                role="tab">
                                                 Prévisualisation
-                                            </p>
+                                            </button>
+                                        </li>
 
-                                            <div class="bg-primary rounded" style="height: 2px; width: 250px;">
-                                            </div>
-
-                                        </div>
-
-                                        <div>
-                                            <p class="fw-semibold text-secondary">
+                                        <li class="nav-item" role="presentation">
+                                            <button
+                                                class="nav-link fw-semibold text-secondary border-0"
+                                                id="relationFacture-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#relationFacture-pane"
+                                                type="button"
+                                                role="tab">
                                                 Relation
-                                            </p>
-                                        </div>
+                                            </button>
+                                        </li>
 
-                                    </div>
+                                    </ul>
 
-                                    <!-- Document -->
-                                    <div class="card border-0 mx-auto" style="max-width: 760px; box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.10), 0 30px 60px rgba(0,0,0,0.08);">
 
-                                        <div class="card-body p-5">
+                                    <div class="tab-content" id="factureTabsContent">
 
-                                            <!-- Header -->
-                                            <div class="d-flex justify-content-between align-items-start flex-wrap">
+                                        <!-- ONGLET PRÉVISUALISATION -->
+                                        <div
+                                            class="tab-pane fade show active"
+                                            id="previewFacture-pane"
+                                            role="tabpanel"
+                                            aria-labelledby="previewFacture-tab">
 
-                                                <!-- Logo -->
-                                                <div>
-                                                    <img src="logo.png" alt="Logo" style="width: 180px;">
-                                                </div>
+                                            <div class="card border-0 mx-auto"
+                                                style="
+                                                max-width: 760px;
+                                                box-shadow:
+                                                0 0 0 1px rgba(0,0,0,0.03),
+                                                0 10px 30px rgba(0,0,0,0.10),
+                                                0 30px 60px rgba(0,0,0,0.08);
+                                                ">
 
-                                                <!-- Client -->
-                                                <div class="text-end">
+                                                <div class="card-body p-5">
 
-                                                    <h2 class="fw-bold text-primary">
-                                                        Facture
-                                                    </h2>
+                                                    <!-- HEADER DOCUMENT -->
+                                                    <div class="d-flex justify-content-between align-items-start flex-wrap">
 
-                                                    <h4 class="fw-bold m-0">
-                                                        Nom du client
-                                                    </h4>
-
-                                                    <p class="m-0">
-                                                        Boite postale et ville du client
-                                                    </p>
-
-                                                    <p class="m-0">
-                                                        Localisation du client
-                                                    </p>
-
-                                                </div>
-
-                                            </div>
-
-                                            <hr class="border-dark border-2 opacity-100">
-
-                                            <!-- Infos -->
-                                            <div class="row mt-4">
-
-                                                <!-- Prestataire -->
-                                                <div class="col-md-6">
-
-                                                    <h4 class="fw-bold">
-                                                        Nom du prestataire
-                                                    </h4>
-
-                                                    <p class="m-0">
-                                                        Boite postale et ville du prestataire
-                                                    </p>
-
-                                                    <p class="m-0">
-                                                        Localisation du prestataire
-                                                    </p>
-
-                                                    <p class="m-0">
-                                                        Numéro de tel prestataire
-                                                    </p>
-
-                                                    <p class="m-0">
-                                                        Email du prestataire
-                                                    </p>
-
-                                                </div>
-
-                                                <!-- Dates -->
-                                                <div class="col-md-6 d-flex justify-content-end">
-
-                                                    <div>
-
-                                                        <div class="d-flex gap-3">
-                                                            <span class="fw-bold text-secondary">
-                                                                N° du document
-                                                            </span>
-
-                                                            <span>000000</span>
+                                                        <div>
+                                                            <img src="logo.png" alt="Logo" style="width: 180px;">
                                                         </div>
 
-                                                        <div class="d-flex gap-3">
-                                                            <span class="fw-bold text-secondary">
-                                                                Date d'émission
-                                                            </span>
+                                                        <div class="text-end">
 
-                                                            <span>00-00-2025</span>
+                                                            <h2 class="fw-bold text-primary">
+                                                                Facture
+                                                            </h2>
+
+                                                            <h4 id="clientNomFactureDocument" class="fw-bold m-0">
+                                                                Nom du client
+                                                            </h4>
+
+                                                            <p id="clientAdresseFactureDocument" class="m-0">
+                                                                Boite postale et ville du client
+                                                            </p>
+
+                                                            <p id="clientLocalisationFactureDocument" class="m-0">
+                                                                Localisation du client
+                                                            </p>
+
                                                         </div>
 
-                                                        <div class="d-flex gap-3">
-                                                            <span class="fw-bold text-secondary">
-                                                                Date de validité
-                                                            </span>
+                                                    </div>
 
-                                                            <span>00-00-2025</span>
+                                                    <hr class="border-dark border-2 opacity-100">
+
+                                                    <!-- INFORMATIONS -->
+                                                    <div class="row mt-4">
+
+                                                        <div class="col-md-6">
+
+                                                            <h4 class="fw-bold">
+                                                                Mohamed Attahir Diallo
+                                                            </h4>
+
+                                                            <p class="m-0">
+                                                                BP 1000 Niamey Niger
+                                                            </p>
+
+                                                            <p class="m-0">
+                                                                +227 74 30 38 11
+                                                            </p>
+
+                                                            <p class="m-0">
+                                                                mohamedattahirdiallo@gmail.com
+                                                            </p>
+
+                                                        </div>
+
+                                                        <div class="col-md-6 d-flex justify-content-end">
+
+                                                            <div>
+
+                                                                <div class="d-flex gap-3">
+                                                                    <span class="fw-bold text-secondary">
+                                                                        N° du document
+                                                                    </span>
+                                                                    <span id="numeroDocumentFacture">
+                                                                        000000
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="d-flex gap-3">
+                                                                    <span class="fw-bold text-secondary">
+                                                                        Devis associé
+                                                                    </span>
+                                                                    <span id="numeroDevisFactureDocument">
+                                                                        -
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="d-flex gap-3">
+                                                                    <span class="fw-bold text-secondary">
+                                                                        Date d'émission
+                                                                    </span>
+                                                                    <span id="dateEmissionFactureDocument">
+                                                                        00-00-2025
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="d-flex gap-3">
+                                                                    <span class="fw-bold text-secondary">
+                                                                        Date de validité
+                                                                    </span>
+                                                                    <span id="dateValiditeFactureDocument">
+                                                                        00-00-2025
+                                                                    </span>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <!-- TABLEAU DES ARTICLES -->
+                                                    <div class="table-responsive mt-5">
+
+                                                        <table class="table align-middle">
+
+                                                            <thead class="border-bottom border-primary border-2">
+
+                                                                <tr class="text-primary">
+                                                                    <th>#</th>
+                                                                    <th style="white-space: nowrap;">Désignation et description</th>
+                                                                    <th>Unité</th>
+                                                                    <th>Quantité</th>
+                                                                    <th style="white-space: nowrap;">Prix u. HT</th>
+                                                                    <th>TVA</th>
+                                                                    <th style="white-space: nowrap;">Montant HT</th>
+                                                                    <th style="white-space: nowrap;">Montant TTC</th>
+                                                                </tr>
+
+                                                            </thead>
+
+                                                            <tbody id="articlesFactureOffcanvas">
+
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    </div>
+
+                                                    <hr class="border-primary">
+
+                                                    <!-- FOOTER -->
+                                                    <div class="row mt-5">
+
+                                                        <div class="col-md-6">
+
+                                                            <h6 class="fw-bold">
+                                                                Délai de paiement
+                                                            </h6>
+
+                                                            <p id="delaiPaiementFactureDocument">
+                                                                Illimité
+                                                            </p>
+
+                                                            <h6 class="fw-bold mt-4">
+                                                                Moyen de paiement
+                                                            </h6>
+
+                                                            <p>
+                                                                Virement bancaire
+                                                            </p>
+
+                                                        </div>
+
+                                                        <div class="col-md-6 d-flex justify-content-end">
+
+                                                            <div style="min-width: 250px;">
+
+                                                                <div class="d-flex justify-content-between">
+                                                                    <span class="text-secondary">Total du devis HT</span>
+                                                                    <span id="totalDevisHTFactureDocument">0</span>
+                                                                </div>
+
+                                                                <div class="d-flex justify-content-between mb-2">
+                                                                    <span class="text-secondary">Acomptes déduits HT</span>
+                                                                    <span id="totalAcomptesHTFactureDocument">0</span>
+                                                                </div>
+
+                                                                <div class="d-flex justify-content-between">
+                                                                    <h5 class="fw-bold">Total HT</h5>
+                                                                    <h5 id="totalHTFactureOffcanvas">0</h5>
+                                                                </div>
+
+                                                                <div class="d-flex justify-content-between">
+                                                                    <h5 class="fw-bold">TVA</h5>
+                                                                    <h5 id="totalTVAFactureOffcanvas">0</h5>
+                                                                </div>
+
+                                                                <div class="d-flex justify-content-between">
+                                                                    <h4 class="fw-bold">Total TTC</h4>
+                                                                    <h4 id="totalTTCFactureOffcanvas">0</h4>
+                                                                </div>
+
+                                                            </div>
+
                                                         </div>
 
                                                     </div>
@@ -476,150 +633,71 @@
 
                                             </div>
 
-                                            <!-- Table -->
-                                            <div class="table-responsive mt-5">
+                                        </div>
 
-                                                <table class="table align-middle">
 
-                                                    <thead class="border-bottom border-primary border-2">
+                                        <!-- ONGLET RELATION -->
+                                        <div
+                                            class="tab-pane fade"
+                                            id="relationFacture-pane"
+                                            role="tabpanel"
+                                            aria-labelledby="relationFacture-tab">
 
-                                                        <tr class="text-primary">
+                                            <div class="card border-0 mx-auto" style="max-width: 760px;">
 
-                                                            <th>#</th>
+                                                <div class="card-body p-5">
 
-                                                            <th style="white-space: nowrap;">
-                                                                Désignation et description
-                                                            </th>
+                                                    <h4 class="fw-bold mb-4">
+                                                        Relations de la facture
+                                                    </h4>
 
-                                                            <th>Unité</th>
-                                                            <th>Quantité</th>
+                                                    <!-- DEVIS -->
+                                                    <div class="border rounded-4 p-4 mb-4">
 
-                                                            <th style="white-space: nowrap;">
-                                                                Prix u. HT
-                                                            </th>
+                                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                                            <h6 class="fw-bold mb-0">
+                                                                <i class="bi bi-file-earmark-text me-2"></i>
+                                                                Devis associé
+                                                            </h6>
+                                                        </div>
 
-                                                            <th>TVA</th>
+                                                        <div id="devisRelationFacture">
+                                                            <small class="text-muted">
+                                                                Aucun devis associé.
+                                                            </small>
+                                                        </div>
 
-                                                            <th style="white-space: nowrap;">
-                                                                Montant HT
-                                                            </th>
+                                                    </div>
 
-                                                            <th style="white-space: nowrap;">
-                                                                Montant TTC
-                                                            </th>
+                                                    <!-- ACOMPTES -->
+                                                    <div class="border rounded-4 p-4 mb-4">
 
-                                                        </tr>
+                                                        <div class="d-flex justify-content-between align-items-center mb-3">
 
-                                                    </thead>
+                                                            <h6 class="fw-bold mb-0">
+                                                                <i class="bi bi-cash-stack me-2"></i>
+                                                                Acomptes
+                                                            </h6>
 
-                                                    <tbody>
-
-                                                        <tr>
-
-                                                            <td>1</td>
-
-                                                            <td>
-
-                                                                <h6 class="fw-bold">
-                                                                    Désignation
-                                                                </h6>
-
-                                                                <p class="m-0">
-                                                                    Description de l'article
-                                                                </p>
-
-                                                                <p class="m-0">
-                                                                    paragraphe 1
-                                                                </p>
-
-                                                                <p class="m-0">
-                                                                    paragraphe 2
-                                                                </p>
-
-                                                            </td>
-
-                                                            <td class="text-center">Unité</td>
-                                                            <td class="text-center">0</td>
-                                                            <td class="text-center">1000</td>
-                                                            <td class="text-center">00%</td>
-                                                            <td class="text-center">000000</td>
-                                                            <td class="text-center">000000</td>
-
-                                                        </tr>
-
-                                                    </tbody>
-
-                                                </table>
-
-                                            </div>
-
-                                            <hr class="border-primary">
-
-                                            <!-- Footer -->
-                                            <div class="row mt-5">
-
-                                                <!-- Paiement -->
-                                                <div class="col-md-6">
-
-                                                    <h6 class="fw-bold">
-                                                        Délai de paiement
-                                                    </h6>
-
-                                                    <p>
-                                                        30 jours
-                                                    </p>
-
-                                                    <h6 class="fw-bold mt-4">
-                                                        Moyen de paiement
-                                                    </h6>
-
-                                                    <p>
-                                                        Virement bancaire
-                                                    </p>
-
-                                                </div>
-
-                                                <!-- Totaux -->
-                                                <div class="col-md-6 d-flex justify-content-end">
-
-                                                    <div style="min-width: 250px;">
-
-                                                        <div class="d-flex justify-content-between">
-
-                                                            <h5 class="fw-bold">
-                                                                Total HT
-                                                            </h5>
-
-                                                            <h5>
-                                                                10000
-                                                            </h5>
+                                                            <span
+                                                                id="nombreAcomptesFacture"
+                                                                class="badge rounded-pill bg-light text-secondary">
+                                                                0
+                                                            </span>
 
                                                         </div>
 
-                                                        <div class="d-flex justify-content-between">
-
-                                                            <h5 class="fw-bold">
-                                                                TVA
-                                                            </h5>
-
-                                                            <h5>
-                                                                2000
-                                                            </h5>
-
+                                                        <div id="listeAcomptesFacture">
+                                                            <small class="text-muted">
+                                                                Aucun acompte associé.
+                                                            </small>
                                                         </div>
 
-                                                        <div class="d-flex justify-content-between">
+                                                    </div>
 
-                                                            <h4 class="fw-bold">
-                                                                Total TTC
-                                                            </h4>
-
-                                                            <h4>
-                                                                12000
-                                                            </h4>
-
-                                                        </div>
-
+                                                    <div class="alert alert-light border mt-4">
+                                                        <i class="bi bi-info-circle me-2"></i>
+                                                        Le devis et les acomptes liés à cette facture apparaissent ici.
                                                     </div>
 
                                                 </div>
@@ -633,76 +711,137 @@
                                 </div>
 
                             </div>
+
+
                             <div class="mt-5">
+
+                                <!-- STATISTIQUES -->
                                 <div class="row g-3 align-items-stretch">
 
                                     <div class="col-md-4">
                                         <div class="card p-2 h-100 d-flex justify-content-center">
-                                            <span class="text-muted">Signé</span>
-                                            <span class="fs-3 fw-bold">100 000 fcfa</span>
-                                            <span class="text-muted fw-bold">100 000 fcfa</span>
+                                            <span class="text-muted">En attente (<span id="nombreFacturesAttente">0</span>)</span>
+                                            <span class="fs-3 fw-bold"><span id="totalFacturesAttenteHT">0</span> fcfa</span>
+                                            <span class="text-muted fw-bold"><span id="totalFacturesAttenteTTC">0</span> fcfa</span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="card p-2 h-100 d-flex justify-content-center">
-                                            <span class="text-muted">Finalisé</span>
-                                            <span class="fs-3 fw-bold">110 000 fcfa</span>
-                                            <span class="text-muted fw-bold">110 000 fcfa</span>
+                                            <span class="text-muted">Payées (<span id="nombreFacturesPayees">0</span>)</span>
+                                            <span class="fs-3 fw-bold"><span id="totalFacturesPayeesHT">0</span> fcfa</span>
+                                            <span class="text-muted fw-bold"><span id="totalFacturesPayeesTTC">0</span> fcfa</span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="card p-2 h-100 d-flex justify-content-center">
-                                            <span class="text-muted">Refusé</span>
-                                            <span class="fs-3 fw-bold">0 fcfa</span>
-                                            <span class="text-muted fw-bold">0 fcfa</span>
+                                            <span class="text-muted">En retard (<span id="nombreFacturesRetard">0</span>)</span>
+                                            <span class="fs-3 fw-bold"><span id="totalFacturesRetardHT">0</span> fcfa</span>
+                                            <span class="text-muted fw-bold"><span id="totalFacturesRetardTTC">0</span> fcfa</span>
                                         </div>
                                     </div>
 
                                 </div>
+
+                                <!-- FILTRES -->
                                 <div class="row g-3 align-items-stretch mt-1">
 
                                     <div class="col-md-3">
-                                        <div class="card p-2 h-100 d-flex justify-content-center"
-                                            style="height: 60px; ">
-                                            <p class="m-0">
-                                                <i class="bi bi-calendar fs-5"></i> Facturation
-                                            </p>
+                                        <div class="dropdown h-100">
+                                            <button
+                                                class="card p-2 h-100 w-100 border-0 d-flex justify-content-center"
+                                                type="button"
+                                                data-bs-toggle="dropdown"
+                                                aria-expanded="false"
+                                                style="height: 60px; box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.10), 0 30px 60px rgba(0,0,0,0.08);">
+
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p class="m-0">
+                                                        <i class="bi bi-calendar fs-5"></i>
+                                                        <span id="statutSelectionneFacture">Statut</span>
+                                                    </p>
+
+                                                    <i class="bi bi-chevron-down fs-5"></i>
+                                                </div>
+                                            </button>
+
+                                            <ul class="dropdown-menu w-100" id="listeStatutFacture">
+                                                <li><button class="dropdown-item" type="button" data-statut="">Tous les statuts</button></li>
+                                                <li><button class="dropdown-item" type="button" data-statut="en attente">En attente</button></li>
+                                                <li><button class="dropdown-item" type="button" data-statut="payé">Payé</button></li>
+                                                <li><button class="dropdown-item" type="button" data-statut="en retard">En retard</button></li>
+                                            </ul>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <input type="text" class="form-control h-100" style="height: 60px; box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.10), 0 30px 60px rgba(0,0,0,0.08);"
-                                            id="formGroupExampleInput"
-                                            placeholder="🔎 Rechercher par numero, titre, client...">
+                                            id="rechercheFacture"
+                                            placeholder="🔎 Rechercher par numero, devis, client...">
                                     </div>
 
                                     <div class="col-md-3">
-                                        <div class="card p-2 h-100 d-flex justify-content-center"
-                                            style="height: 60px; box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.10), 0 30px 60px rgba(0,0,0,0.08);">
+                                        <div class="dropdown h-100">
+                                            <button
+                                                class="card p-2 h-100 w-100 border-0 d-flex justify-content-center"
+                                                type="button"
+                                                data-bs-toggle="dropdown"
+                                                aria-expanded="false"
+                                                style="height: 60px; box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.10), 0 30px 60px rgba(0,0,0,0.08);">
 
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <p class="m-0">
-                                                    <i class="bi bi-person-square fs-5"></i> Clients
-                                                </p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p class="m-0">
+                                                        <i class="bi bi-person-square fs-5"></i>
+                                                        <span id="clientSelectionneFacture">Clients</span>
+                                                    </p>
 
-                                                <i class="bi bi-chevron-down fs-5"></i>
-                                            </div>
+                                                    <i class="bi bi-chevron-down fs-5"></i>
+                                                </div>
+                                            </button>
 
+                                            <ul class="dropdown-menu w-100" id="listeClientsFacture">
+                                                <li>
+                                                    <button class="dropdown-item" type="button" data-client="">
+                                                        Tous les clients
+                                                    </button>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
 
                                 </div>
+
+                                <!-- TABLEAU -->
                                 <div class="card mt-4">
                                     <div class="card-body">
                                         <div class="table-responsive w-100">
                                             <table class="table table-borderless table-sm w-100">
                                                 <caption class="text-end">
-                                                    <span>Ligne par page 25 <i class="bi bi-caret-down-fill"></i></span>
-                                                    <span>1-5 de 5</span>
-                                                    <span><i class="bi bi-chevron-left"></i> 1 <i
-                                                            class="bi bi-chevron-right"></i></span>
+                                                    <div class="dropdown d-inline-block">
+                                                        <button
+                                                            class="btn btn-sm p-0"
+                                                            type="button"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            <span id="lignesParPageFacture">Ligne par page 25</span>
+                                                            <i class="bi bi-caret-down-fill"></i>
+                                                        </button>
+
+                                                        <ul class="dropdown-menu" id="listeLignesFacture">
+                                                            <li><button class="dropdown-item" type="button" data-lignes-facture="10">10</button></li>
+                                                            <li><button class="dropdown-item" type="button" data-lignes-facture="25">25</button></li>
+                                                            <li><button class="dropdown-item" type="button" data-lignes-facture="50">50</button></li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <span id="compteurFactures">0-0 de 0</span>
+
+                                                    <span>
+                                                        <i id="pagePrecedenteFacture" class="bi bi-chevron-left" role="button"></i>
+                                                        <span id="numeroPageFacture">1</span>
+                                                        <i id="pageSuivanteFacture" class="bi bi-chevron-right" role="button"></i>
+                                                    </span>
                                                 </caption>
                                                 <thead>
                                                     <tr class="p-3">
@@ -712,118 +851,24 @@
                                                         <th scope="col">Montant TTC</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasfacture" role="button" aria-controls="offcanvasExample">
-                                                        <td scope="row">
-                                                            <div class="d-flex flex-column">
-                                                                <span>F-2023-0112</span>
-                                                                <small class="text-primary">John Doe</small>
-                                                                <small><i class="bi bi-clock"></i> 13 mars 2023 <i
-                                                                        class="bi bi-calendar4-event"></i> 13 mars
-                                                                    2023</small>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="text-primary fw-bold"
-                                                                style="background-color: #89C7F4 !important; padding: 6px 15px !important; border-radius: 15px;">Finalisé</span>
-                                                        </td>
-                                                        <td>10 000,00 fcfa</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                    </tr>
-                                                    <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasfacture" role="button" aria-controls="offcanvasExample">
-                                                        <td scope="row">
-                                                            <div class="d-flex flex-column">
-                                                                <span>F-2023-0112</span>
-                                                                <small class="text-primary">John Doe</small>
-                                                                <small><i class="bi bi-clock"></i> 13 mars 2023 <i
-                                                                        class="bi bi-calendar4-event"></i> 13 mars
-                                                                    2023</small>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="text-primary fw-bold"
-                                                                style="background-color: #89C7F4 !important; padding: 6px 15px !important; border-radius: 15px;">Finalisé</span>
-                                                        </td>
-                                                        <td>10 000,00 fcfa</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                    </tr>
-                                                    <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasfacture" role="button" aria-controls="offcanvasExample">
-                                                        <td scope="row">
-                                                            <div class="d-flex flex-column">
-                                                                <span>F-2023-0112</span>
-                                                                <small class="text-primary">John Doe</small>
-                                                                <small><i class="bi bi-clock"></i> 13 mars 2023 <i
-                                                                        class="bi bi-calendar4-event"></i> 13 mars
-                                                                    2023</small>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="text-primary fw-bold"
-                                                                style="background-color: #89C7F4 !important; padding: 6px 15px !important; border-radius: 15px;">Finalisé</span>
-                                                        </td>
-                                                        <td>10 000,00 fcfa</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                    </tr>
-                                                    <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasfacture" role="button" aria-controls="offcanvasExample">
-                                                        <td scope="row">
-                                                            <div class="d-flex flex-column">
-                                                                <span>F-2023-0112</span>
-                                                                <small class="text-primary">John Doe</small>
-                                                                <small><i class="bi bi-clock"></i> 13 mars 2023 <i
-                                                                        class="bi bi-calendar4-event"></i> 13 mars
-                                                                    2023</small>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="text-primary fw-bold"
-                                                                style="background-color: #89C7F4 !important; padding: 6px 15px !important; border-radius: 15px;">Finalisé</span>
-                                                        </td>
-                                                        <td>10 000,00 fcfa</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                    </tr>
-                                                    <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasfacture" role="button" aria-controls="offcanvasExample">
-                                                        <td scope="row">
-                                                            <div class="d-flex flex-column">
-                                                                <span>F-2023-0112</span>
-                                                                <small class="text-primary">John Doe</small>
-                                                                <small><i class="bi bi-clock"></i> 13 mars 2023 <i
-                                                                        class="bi bi-calendar4-event"></i> 13 mars
-                                                                    2023</small>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="text-primary fw-bold"
-                                                                style="background-color: #89C7F4 !important; padding: 6px 15px !important; border-radius: 15px;">Finalisé</span>
-                                                        </td>
-                                                        <td>10 000,00 fcfa</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                    </tr>
-                                                    <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasfacture" role="button" aria-controls="offcanvasExample">
-                                                        <td scope="row">
-                                                            <div class="d-flex flex-column">
-                                                                <span>F-2023-0112</span>
-                                                                <small class="text-primary">John Doe</small>
-                                                                <small><i class="bi bi-clock"></i> 13 mars 2023 <i
-                                                                        class="bi bi-calendar4-event"></i> 13 mars
-                                                                    2023</small>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="text-primary fw-bold"
-                                                                style="background-color: #89C7F4 !important; padding: 6px 15px !important; border-radius: 15px;">Finalisé</span>
-                                                        </td>
-                                                        <td>10 000,00 fcfa</td>
-                                                        <td>11 500,00 fcfa</td>
-                                                    </tr>
+                                                <tbody id="listeFactures">
+
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
                         <!-- Avoirs -->
-                        <div class="tab-pane fade" id="Avoirs">
+                        <div class="tab-pane fade show" id="Avoirs">
 
                         </div>
 
                         <!-- Devis -->
-                        <div class="tab-pane fade" id="Devis">
+                        <div class="tab-pane fade show" id="Devis">
                             <div class="d-flex gap-4 justify-content-end">
 
                                 <a class="btn border-primary text-primary"
@@ -889,6 +934,7 @@
                                                 13 mars 2023
                                             </small>
 
+
                                         </div>
 
                                     </div>
@@ -898,7 +944,11 @@
                                         STATUT
                                     ========================== -->
                                    <!-- Actions -->
-                                    <div id="statutDevisOffcanvas" class="dropdown">
+                                    <div class="dropdown">
+
+                                         <small id="statutDevisOffcanvas" class="fw-bold">
+                                            signé
+                                        </small>
 
                                         <!-- Bouton trois points -->
                                         <button
@@ -914,6 +964,17 @@
 
                                         <!-- Menu des actions -->
                                         <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
+                                            <li>
+                                                <button
+                                                    class="dropdown-item"
+                                                    type="button"
+                                                    onclick="modifierDevis()">
+
+                                                    <i class="bi bi-pencil me-2"></i>
+                                                    Modifier
+                                                </button>
+                                            </li>
 
                                             <li>
                                                 <button
@@ -950,6 +1011,43 @@
                                                     <i class="bi bi-x-circle me-2"></i>
                                                     Refusé
 
+                                                </button>
+                                            </li>
+
+
+                                            <li>
+                                                <button
+                                                    class="dropdown-item"
+                                                    type="button"
+                                                    onclick="CreerAcompte()">
+
+                                                    <i class="bi bi-cash-stack me-2"></i>
+                                                    Créer un acompte
+
+                                                </button>
+                                            </li>
+
+
+                                            <li>
+                                                <button
+                                                    class="dropdown-item"
+                                                    type="button"
+                                                    onclick="creerFactureDepuisDevis()"
+                                                >
+                                                    <i class="bi bi-receipt me-2"></i>
+                                                    Créer une facture
+                                                </button>
+                                            </li>
+
+
+                                            <li>
+                                                <button
+                                                    class="dropdown-item text-danger"
+                                                    type="button"
+                                                    onclick="supprimerDevis()">
+
+                                                    <i class="bi bi-trash me-2"></i>
+                                                    Supprimer
                                                 </button>
                                             </li>
 
@@ -1102,23 +1200,19 @@
                                                         <div class="col-md-6">
 
                                                             <h4 class="fw-bold">
-                                                                Nom du prestataire
+                                                                Mohamed Attahir Diallo 
                                                             </h4>
 
                                                             <p class="m-0">
-                                                                Boite postale et ville du prestataire
+                                                                BP 1000 Niamey Niger
                                                             </p>
 
                                                             <p class="m-0">
-                                                                Localisation du prestataire
+                                                                +227 74 30 38 11
                                                             </p>
 
                                                             <p class="m-0">
-                                                                Numéro de tel prestataire
-                                                            </p>
-
-                                                            <p class="m-0">
-                                                                Email du prestataire
+                                                                mohamedattahirdiallo@gmail.com
                                                             </p>
 
                                                         </div>
@@ -1253,8 +1347,8 @@
                                                                 Délai de paiement
                                                             </h6>
 
-                                                            <p>
-                                                                30 jours
+                                                            <p id="dateValiditeDocument2">
+                                                                Illimitté
                                                             </p>
 
 
@@ -1283,7 +1377,7 @@
                                                                     </h5>
 
                                                                     <h5 id="totalHTOffcanvas">
-                                                                        10000
+                                                                        10000 <span id="devise4"></span>
                                                                     </h5>
 
                                                                 </div>
@@ -1297,7 +1391,7 @@
                                                                     </h5>
 
                                                                     <h5 id="totalTVAOffcanvas">
-                                                                        2000
+                                                                        2000 <span id="devise5"></span>
                                                                     </h5>
 
                                                                 </div>
@@ -1311,7 +1405,7 @@
                                                                     </h4>
 
                                                                     <h4 id="totalTTCOffcanvas">
-                                                                        12000
+                                                                        12000 <span id="devise6"></span>
                                                                     </h4>
 
                                                                 </div>
@@ -1339,71 +1433,86 @@
                                             role="tabpanel"
                                             aria-labelledby="relation-tab">
 
-
                                             <div class="card border-0 mx-auto"
                                                 style="max-width: 760px;">
 
                                                 <div class="card-body p-5">
-
 
                                                     <h4 class="fw-bold mb-4">
                                                         Relations du devis
                                                     </h4>
 
 
-                                                    <!-- Acomptes -->
-                                                    <div class="border rounded-4 p-4 mb-3">
+                                                    <!-- ================================================= -->
+                                                    <!-- ACOMPTES -->
+                                                    <!-- ================================================= -->
 
-                                                        <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="border rounded-4 p-4 mb-4">
 
-                                                            <div>
+                                                        <div class="d-flex justify-content-between align-items-center mb-3">
 
-                                                                <h6 class="fw-bold mb-1">
-                                                                    Acomptes
-                                                                </h6>
+                                                            <h6 class="fw-bold mb-0">
+                                                                <i class="bi bi-cash-stack me-2"></i>
+                                                                Acomptes
+                                                            </h6>
 
-                                                                <small class="text-muted">
-                                                                    Aucune relation pour le moment
-                                                                </small>
-
-                                                            </div>
-
-                                                            <span class="badge rounded-pill bg-light text-secondary">
+                                                            <span
+                                                                id="nombreAcomptesRelation"
+                                                                class="badge rounded-pill bg-light text-secondary">
                                                                 0
                                                             </span>
+
+                                                        </div>
+
+                                                        <!-- Liste des acomptes -->
+                                                        <div id="listeAcomptesRelation">
+
+                                                            <small class="text-muted">
+                                                                Aucun acompte lié à ce devis.
+                                                            </small>
 
                                                         </div>
 
                                                     </div>
 
 
-                                                    <!-- Factures -->
-                                                    <div class="border rounded-4 p-4 mb-3">
+                                                    <!-- ================================================= -->
+                                                    <!-- FACTURES -->
+                                                    <!-- ================================================= -->
 
-                                                        <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="border rounded-4 p-4 mb-4">
 
-                                                            <div>
+                                                        <div class="d-flex justify-content-between align-items-center mb-3">
 
-                                                                <h6 class="fw-bold mb-1">
-                                                                    Factures
-                                                                </h6>
+                                                            <h6 class="fw-bold mb-0">
+                                                                <i class="bi bi-receipt me-2"></i>
+                                                                Factures
+                                                            </h6>
 
-                                                                <small class="text-muted">
-                                                                    Aucune facture liée à ce devis
-                                                                </small>
-
-                                                            </div>
-
-                                                            <span class="badge rounded-pill bg-light text-secondary">
+                                                            <span
+                                                                id="nombreFacturesRelation"
+                                                                class="badge rounded-pill bg-light text-secondary">
                                                                 0
                                                             </span>
+
+                                                        </div>
+
+                                                        <!-- Liste des factures -->
+                                                        <div id="listeFacturesRelation">
+
+                                                            <small class="text-muted">
+                                                                Aucune facture liée à ce devis.
+                                                            </small>
 
                                                         </div>
 
                                                     </div>
 
 
-                                                    <!-- Informations -->
+                                                    <!-- ================================================= -->
+                                                    <!-- INFORMATIONS -->
+                                                    <!-- ================================================= -->
+
                                                     <div class="alert alert-light border mt-4">
 
                                                         <i class="bi bi-info-circle me-2"></i>
@@ -1431,24 +1540,24 @@
                                     <div class="col-md-4">
                                         <div class="card p-2 h-100 d-flex justify-content-center">
                                             <span class="text-muted">Signé</span>
-                                            <span class="fs-3 fw-bold">100 000 fcfa</span>
-                                            <span class="text-muted fw-bold">100 000 fcfa</span>
+                                            <span class="fs-3 fw-bold"><span id="totalSigneHT">0 </span> fcfa</span>
+                                            <span class="text-muted fw-bold"><span id="totalSigneTTC">0</span> fcfa</span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="card p-2 h-100 d-flex justify-content-center">
                                             <span class="text-muted">Finalisé</span>
-                                            <span class="fs-3 fw-bold">110 000 fcfa</span>
-                                            <span class="text-muted fw-bold">110 000 fcfa</span>
+                                            <span class="fs-3 fw-bold"><span  id="totalFinaliseHT">0</span> fcfa</span>
+                                            <span class="text-muted fw-bold"><span id="totalFinaliseTTC">0</span> fcfa</span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="card p-2 h-100 d-flex justify-content-center">
                                             <span class="text-muted">Refusé</span>
-                                            <span class="fs-3 fw-bold">0 fcfa</span>
-                                            <span class="text-muted fw-bold">0 fcfa</span>
+                                            <span class="fs-3 fw-bold"><span id="totalRefuseHT">0</span> fcfa</span>
+                                            <span class="text-muted fw-bold"><span id="totalRefuseTTC">0</span> fcfa</span>
                                         </div>
                                     </div>
 
@@ -1456,34 +1565,68 @@
                                 <div class="row g-3 align-items-stretch mt-1">
 
                                     <div class="col-md-3">
-                                        <div class="card p-2 h-100 d-flex justify-content-center"
-                                            style="height: 60px; ">
-                                            <p class="m-0">
-                                                <i class="bi bi-calendar fs-5"></i> Facturation
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control h-100" style="height: 60px; box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.10), 0 30px 60px rgba(0,0,0,0.08);"
-                                            id="formGroupExampleInput"
-                                            placeholder="🔎 Rechercher par numero, titre, client...">
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="card p-2 h-100 d-flex justify-content-center"
+                                    <div class="dropdown h-100">
+                                        <button
+                                            class="card p-2 h-100 w-100 border-0 d-flex justify-content-center"
+                                            type="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
                                             style="height: 60px; box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.10), 0 30px 60px rgba(0,0,0,0.08);">
 
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <p class="m-0">
-                                                    <i class="bi bi-person-square fs-5"></i> Clients
+                                                    <i class="bi bi-calendar fs-5"></i>
+                                                    <span id="FactureSelectionne">Facturation</span>
                                                 </p>
 
                                                 <i class="bi bi-chevron-down fs-5"></i>
                                             </div>
+                                        </button>
 
-                                        </div>
+                                        <ul class="dropdown-menu w-100" id="listeFactureDevis">
+                                            <li>
+                                                <button class="dropdown-item" type="button">
+                                                    Toutes les Factures
+                                                </button>
+                                            </li>
+                                        </ul>
                                     </div>
+                                </div>
+
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control h-100" style="height: 60px; box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.10), 0 30px 60px rgba(0,0,0,0.08);"
+                                            id="rechercheDevis"
+                                            placeholder="🔎 Rechercher par numero, titre, client...">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                    <div class="dropdown h-100">
+                                        <button
+                                            class="card p-2 h-100 w-100 border-0 d-flex justify-content-center"
+                                            type="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                            style="height: 60px; box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 10px 30px rgba(0,0,0,0.10), 0 30px 60px rgba(0,0,0,0.08);">
+
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="m-0">
+                                                    <i class="bi bi-person-square fs-5"></i>
+                                                    <span id="clientSelectionne">Clients</span>
+                                                </p>
+
+                                                <i class="bi bi-chevron-down fs-5"></i>
+                                            </div>
+                                        </button>
+
+                                        <ul class="dropdown-menu w-100" id="listeClientsDevis">
+                                            <li>
+                                                <button id="toutLesClients" class="dropdown-item" type="button">
+                                                    Tous les clients
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
 
                                 </div>
                                 <div class="card mt-4">
@@ -1491,10 +1634,42 @@
                                         <div class="table-responsive w-100">
                                             <table class="table table-borderless table-sm w-100">
                                                 <caption class="text-end">
-                                                    <span>Ligne par page 25 <i class="bi bi-caret-down-fill"></i></span>
-                                                    <span>1-5 de 5</span>
-                                                    <span><i class="bi bi-chevron-left"></i> 1 <i
-                                                            class="bi bi-chevron-right"></i></span>
+                                                    <div class="dropdown d-inline-block">
+                                                        <button
+                                                            class="btn btn-sm p-0"
+                                                            type="button"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            <span id="lignesParPage">Ligne par page 25</span>
+                                                            <i class="bi bi-caret-down-fill"></i>
+                                                        </button>
+
+                                                        <ul class="dropdown-menu">
+                                                            <li>
+                                                                <button class="dropdown-item" type="button" data-lignes="10">
+                                                                    10
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button class="dropdown-item" type="button" data-lignes="25">
+                                                                    25
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button class="dropdown-item" type="button" data-lignes="50">
+                                                                    50
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <span id="compteurDevis">1-5 de 5</span>
+
+                                                    <span>
+                                                        <i id="pagePrecedente" class="bi bi-chevron-left"></i>
+                                                        <span id="numeroPage">1</span>
+                                                        <i id="pageSuivante" class="bi bi-chevron-right"></i>
+                                                    </span>
                                                 </caption>
                                                 <thead>
                                                     <tr class="p-3">
@@ -1515,12 +1690,12 @@
                         </div>
 
                         <!-- commande -->
-                        <div class="tab-pane fade" id="commande">
+                        <div class="tab-pane fade show" id="commande">
 
                         </div>
 
                         <!-- Clients -->
-                        <div class="tab-pane fade show active" id="Clients">
+                        <div class="tab-pane fade show" id="Clients">
                             <div class="d-flex gap-4 justify-content-end">
                                 <button class="btn border-primary text-primary" type="button" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasCreerClient" aria-controls="offcanvasCreerClient">
@@ -1906,12 +2081,12 @@
                         </div>
 
                         <!-- Fournisseurs -->
-                        <div class="tab-pane fade" id="Fournisseurs">
+                        <div class="tab-pane fade show" id="Fournisseurs">
 
                         </div>
 
                         <!-- Articles -->
-                        <div class="tab-pane fade show active" id="Articles">
+                        <div class="tab-pane" id="Articles">
 
                             <!-- Bouton nouvel article -->
                             <div class="d-flex justify-content-end">
@@ -2436,7 +2611,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-
+    <script src="facture.js"></script>
     <script src="devis.js"></script>
     <script src="Client.js"></script>
     <script src="Article.js"></script>

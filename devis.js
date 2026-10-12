@@ -44,6 +44,32 @@ const ajouterArticleDevis =
 
 const sauvegarde = document.getElementById("sauvegarde");  
 
+const devisAModifier =
+    JSON.parse(localStorage.getItem("devisAModifier"));
+
+let pageActuelle = 1;
+let lignesParPage = 25; 
+
+const ligneParPageElement = document.getElementById("lignesParPage");
+const compteurDevis = document.getElementById("compteurDevis");
+const numeroPage = document.getElementById("numeroPage");
+const pagePrecedente = document.getElementById("pagePrecedente");
+const pageSuivante = document.getElementById("pageSuivante");
+ 
+
+if (devisAModifier) {
+
+    devisAModifier.articlesDuDevis.forEach((article) => {
+
+        articlesDuDevis.push(article);
+
+    });
+
+    afficherArticlesDevis();
+    afficherCartesArticles();
+
+}
+
 if (selectClient) {
     clientsDevis.forEach((client) => {
         const option = document.createElement("option");
@@ -53,7 +79,12 @@ if (selectClient) {
         option.textContent = client.designation;
 
         selectClient.appendChild(option);
-    });
+});
+
+    if (devisAModifier) {
+        selectClient.value = devisAModifier.clientId2;
+        selectClient.dispatchEvent(new Event("change"));
+    }
 
     selectClient.addEventListener("change", () => {
 
@@ -94,6 +125,7 @@ if (selectArticle) {
     selectArticle.appendChild(option);
 
     });
+
 
     ajouterArticleDevis.addEventListener("click", () => {
 
@@ -159,7 +191,8 @@ if (selectArticle) {
 
 function afficherArticlesDevis() {
 
-    listeArticlesDevis.innerHTML = "";
+    if (listeArticlesDevis) {
+        listeArticlesDevis.innerHTML = "";
 
     articlesDuDevis.forEach((article, index) => {
 
@@ -213,182 +246,185 @@ function afficherArticlesDevis() {
             </tr>
         `;
     });
+    }
+
 
     calculerTotauxDevis();
 }
 
 function afficherCartesArticles() {
 
-    conteneurArticlesDevis.innerHTML = "";
+    if (conteneurArticlesDevis) {
+        conteneurArticlesDevis.innerHTML = "";
 
-    articlesDuDevis.forEach((article, index) => {
+        articlesDuDevis.forEach((article, index) => {
 
-        conteneurArticlesDevis.innerHTML += `
+            conteneurArticlesDevis.innerHTML += `
 
-            <div class="border border-primary rounded-4 p-3 mb-3">
+                <div class="border border-primary rounded-4 p-3 mb-3">
 
-                <!-- HEADER -->
+                    <!-- HEADER -->
 
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <small class="fw-bold text-secondary">
+                        <small class="fw-bold text-secondary">
 
-                        #${index + 1} ${article.designation}
+                            #${index + 1} ${article.designation}
 
-                    </small>
+                        </small>
 
-                    <div class="d-flex gap-3">
+                        <div class="d-flex gap-3">
 
-                        <i
-                            id="chevronArticle${index}"
-                            class="bi bi-chevron-up text-secondary"
-                            style="cursor:pointer;"
-                            onclick="toggleArticleDevis(${index})">
-                        </i>
+                            <i
+                                id="chevronArticle${index}"
+                                class="bi bi-chevron-up text-secondary"
+                                style="cursor:pointer;"
+                                onclick="toggleArticleDevis(${index})">
+                            </i>
 
-                        <i
-                            class="bi bi-trash text-danger"
-                            style="cursor:pointer;"
-                            onclick="supprimerArticleDevis(${index})">
-                        </i>
+                            <i
+                                class="bi bi-trash text-danger"
+                                style="cursor:pointer;"
+                                onclick="supprimerArticleDevis(${index})">
+                            </i>
+
+                        </div>
 
                     </div>
 
-                </div>
 
+                    <!-- DÉSIGNATION -->
 
-                <!-- DÉSIGNATION -->
-
-                <div class="mb-3">
-
-                    <label class="fw-bold small mb-2">
-                        Désignation *
-                    </label>
-
-                    <input
-                        type="text"
-                        class="form-control"
-                        value="${article.designation}"
-                        readonly
-                        style="height:42px; border-radius:12px;">
-
-                </div>
-
-                <div id="contenuArticle${index}">
-                <!-- DESCRIPTION -->
-
-                <div class="mb-3">
-
-                    <label class="fw-bold small mb-2">
-                        Description
-                    </label>
-
-                    <textarea
-                        class="form-control rounded-4"
-                        rows="4"
-                        readonly>${article.description}</textarea>
-
-                </div>
-
-
-                <!-- TYPE -->
-
-                <div class="mb-3">
-
-                    <label class="fw-bold small mb-2">
-                        Type de l'article *
-                    </label>
-
-                    <input
-                        type="text"
-                        class="form-control"
-                        value="${article.type}"
-                        readonly
-                        style="height:42px; border-radius:12px;">
-
-                </div>
-
-
-                <!-- UNITÉ / PRIX / TVA / QUANTITÉ -->
-
-                <div class="row g-2">
-
-                    <div class="col-md-3">
+                    <div class="mb-3">
 
                         <label class="fw-bold small mb-2">
-                            Unité
+                            Désignation *
                         </label>
 
                         <input
                             type="text"
                             class="form-control"
-                            value="${article.unite}"
+                            value="${article.designation}"
+                            readonly
+                            style="height:42px; border-radius:12px;">
+
+                    </div>
+
+                    <div id="contenuArticle${index}">
+                    <!-- DESCRIPTION -->
+
+                    <div class="mb-3">
+
+                        <label class="fw-bold small mb-2">
+                            Description
+                        </label>
+
+                        <textarea
+                            class="form-control rounded-4"
+                            rows="4"
+                            readonly>${article.description}</textarea>
+
+                    </div>
+
+
+                    <!-- TYPE -->
+
+                    <div class="mb-3">
+
+                        <label class="fw-bold small mb-2">
+                            Type de l'article *
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="${article.type}"
                             readonly
                             style="height:42px; border-radius:12px;">
 
                     </div>
 
 
-                    <div class="col-md-3">
+                    <!-- UNITÉ / PRIX / TVA / QUANTITÉ -->
 
-                        <label class="fw-bold small mb-2">
-                            Prix HT
-                        </label>
+                    <div class="row g-2">
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            value="${article.prixHT}"
-                            readonly
-                            style="height:42px; border-radius:12px;">
+                        <div class="col-md-3">
 
-                    </div>
+                            <label class="fw-bold small mb-2">
+                                Unité
+                            </label>
 
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="${article.unite}"
+                                readonly
+                                style="height:42px; border-radius:12px;">
 
-                    <div class="col-md-3">
-
-                        <label class="fw-bold small mb-2">
-                            Taxe
-                        </label>
-
-                        <input
-                            type="text"
-                            class="form-control"
-                            value="${article.taxe}%"
-                            readonly
-                            style="height:42px; border-radius:12px;">
-
-                    </div>
+                        </div>
 
 
-                    <div class="col-md-3">
+                        <div class="col-md-3">
 
-                        <label class="fw-bold small mb-2">
-                            Quantité *
-                        </label>
+                            <label class="fw-bold small mb-2">
+                                Prix HT
+                            </label>
 
-                        <input
-                            type="number"
-                            class="form-control quantiteDevis"
-                            value="${article.quantite}"
-                            data-index="${index}"
-                            min="1"
-                            style="height:42px; border-radius:12px;">
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="${article.prixHT}"
+                                readonly
+                                style="height:42px; border-radius:12px;">
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <label class="fw-bold small mb-2">
+                                Taxe
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="${article.taxe}%"
+                                readonly
+                                style="height:42px; border-radius:12px;">
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <label class="fw-bold small mb-2">
+                                Quantité *
+                            </label>
+
+                            <input
+                                type="number"
+                                class="form-control quantiteDevis"
+                                value="${article.quantite}"
+                                data-index="${index}"
+                                min="1"
+                                style="height:42px; border-radius:12px;">
+
+                        </div>
 
                     </div>
 
                 </div>
+                </div>
 
-            </div>
-            </div>
+            `;
 
-        `;
+        });
 
-    });
+        const quantiteAll = conteneurArticlesDevis.querySelectorAll(".quantiteDevis");
 
-    const quantiteAll = conteneurArticlesDevis.querySelectorAll(".quantiteDevis");
-
-        quantiteAll.forEach((input) => {
+            quantiteAll.forEach((input) => {
 
             input.addEventListener("change", () => {
 
@@ -405,6 +441,7 @@ function afficherCartesArticles() {
                 afficherArticlesDevis();
             })
         });
+    }
 
 
 }
@@ -424,9 +461,13 @@ function calculerTotauxDevis() {
 
     const totalTTC = totalHT + totalTVA;
 
-    totalHTDevis.textContent = totalHT.toLocaleString("fr-FR");
-    totalTVADevis.textContent = totalTVA.toLocaleString("fr-FR");
-    totalTTCDevis.textContent = totalTTC.toLocaleString("fr-FR");
+    if (totalHTDevis && totalTVADevis && totalTTCDevis) {
+
+        totalHTDevis.textContent = totalHT.toLocaleString("fr-FR");
+        totalTVADevis.textContent = totalTVA.toLocaleString("fr-FR");
+        totalTTCDevis.textContent = totalTTC.toLocaleString("fr-FR");
+    }
+
 }
 
 function supprimerArticleDevis(index) {
@@ -491,6 +532,26 @@ function changerStatutDevis(nouveauStatut) {
 
 }
 
+function modifierDevis() {
+
+    const devisSelectionne = devis.find((devi) => {
+        return devi.numero === numeroDevisActuel;
+    });
+
+    if (!devisSelectionne) {
+        return;
+    }
+
+    localStorage.setItem(
+        "devisAModifier",
+        JSON.stringify(devisSelectionne)
+    );
+
+    window.location.href = "CreerDevis.html";
+
+
+}
+
 if (selectClient && selectArticle) {
     sauvegarde.addEventListener("click", () => {
 
@@ -531,23 +592,48 @@ if (selectClient && selectArticle) {
 
     console.log(numero);
     
-const nouveauDevis = {
-    clientId2,
-    client2,
-    articlesDuDevis,
-    totalHT,
-    totalTVA,
-    totalTTC,
-    numero,
-    dateEmission: inputDateEmission.value,
-    validite: Number(inputDateValidite.value),
-    status: "signé"
-};
+    const nouveauDevis = {
 
-    devis.push(nouveauDevis);
+        clientId2,
+
+        client2,
+
+        articlesDuDevis,
+
+        totalHT,
+
+        totalTVA,
+
+        totalTTC,
+
+        numero: devisAModifier ? devisAModifier.numero : numero,
+
+        dateEmission: inputDateEmission.value,
+
+        validite: Number(inputDateValidite.value),
+
+        status: devisAModifier ? devisAModifier.status : "signé"
+
+    };
+
+    if (devisAModifier) {
+
+    const indexDevis = devis.findIndex(
+        (devi) => devi.numero === devisAModifier.numero
+    );
+
+    devis[indexDevis] = nouveauDevis;
+
+    } else {
+
+        devis.push(nouveauDevis);
+
+    }
 
     localStorage.setItem("devis", JSON.stringify(devis));
+    localStorage.removeItem("devisAModifier");
 
+    window.location.href = "facturation.html";
 
     console.log(devis);
     
@@ -558,13 +644,100 @@ const nouveauDevis = {
 
 let tbody2 = document.getElementById("listeDevis");
 let numeroDevisActuel = null;
+const rechercheDevis = document.getElementById("rechercheDevis");
+const clientSelectionne = document.getElementById("clientSelectionne");
+const toutLesClients = document.getElementById("toutLesClients");
+let clientActuel = null;
+
+function NomClient() {
+
+    const listeCl = document.getElementById("listeClientsDevis");
+
+    clientsDevis.forEach((client) => {
+        const liste2 = document.createElement("li");
+        const button = document.createElement("button");
+        button.classList.add("dropdown-item");
+
+        button.addEventListener("click", () => {
+            clientSelectionne.innerText = client.designation;
+
+            clientActuel = client;
+            pageActuelle = 1;
+            afficherDevis();
+
+        });
+
+        button.innerHTML = client.designation;
+        liste2.appendChild(button);
+
+        listeCl.appendChild(liste2);
+    });
+
+     toutLesClients.addEventListener("click", () => {
+            clientSelectionne.innerText = "Clients";
+            clientActuel = null;
+            pageActuelle = 1;
+            afficherDevis();
+        });
+};
+
+NomClient();
+
+if (rechercheDevis) {
+    rechercheDevis.addEventListener("input", () => {
+        pageActuelle = 1;
+        afficherDevis();
+    });
+}
 
 
-function afficherDevis() {
+function afficherDevis(listeDevis = devis) {
 
     tbody2.innerHTML = "";
 
-    devis.forEach((devi) => {
+    const textRecherche = rechercheDevis.value.toLowerCase();
+
+    const devisFilter = listeDevis.filter((devi) => {
+
+        return (
+            (clientActuel === null || devi.client2.designation === clientActuel.designation ) &&
+            (devi.numero.toLowerCase().includes(textRecherche) ||
+            devi.client2.designation.toLowerCase().includes(textRecherche))
+        );
+    });
+
+    const nombreTotalDevis = devisFilter.length;
+    const nombreTotalPages = calculerNombrePages(nombreTotalDevis);
+
+    if (pageActuelle > nombreTotalPages && nombreTotalPages > 0) {
+        pageActuelle = nombreTotalPages;
+    };
+
+    const debut = (pageActuelle - 1) * lignesParPage;
+    const fin = debut + lignesParPage;
+
+    const devisPage = devisFilter.slice(debut, fin);
+
+    const debutAffichage = nombreTotalDevis === 0 ? 0 : debut + 1;
+    const finAffichage = Math.min(fin, nombreTotalDevis);
+
+    compteurDevis.innerText = `${debutAffichage}-${finAffichage} de ${nombreTotalDevis}`;
+
+    numeroPage.innerText = pageActuelle;
+
+    if (pageActuelle === 1) {
+        pagePrecedente.style.display = "none";
+    } else {
+        pagePrecedente.style.display = "inline";
+    }
+
+    if (pageActuelle === nombreTotalPages) {
+        pageSuivante.style.display = "none";
+    } else {
+        pageSuivante.style.display = "inline";
+    }
+
+    devisPage.forEach((devi) => {
 
         tbody2.innerHTML += `
         <tr data-id="${devi.numero}">
@@ -572,7 +745,7 @@ function afficherDevis() {
             <div class="d-flex flex-column">
                 <span>${devi.numero}</span>
                 <small class="text-primary">${devi.client2.designation}</small>
-                <small><i class="bi bi-clock"></i> ${devi.date} </small>
+                <small><i class="bi bi-clock"></i> ${devi.dateEmission} </small>
             </div>
             </td>
             <td><span class="text-primary fw-bold"
@@ -583,6 +756,8 @@ function afficherDevis() {
         </tr>
     `
     });
+
+    calculerTotauxParStatus();
 
     const allListe = document.querySelectorAll("#listeDevis tr");
 
@@ -611,12 +786,26 @@ function afficherDevis() {
             devisSelectionne.totalTTC;
 
             document.getElementById("dateDevisOffcanvas").textContent = 
-            devisSelectionne.date;
+            devisSelectionne.dateEmission;
+
+            document.getElementById("dateEmissionDocument").textContent = 
+            devisSelectionne.dateEmission;
+
+            document.getElementById("dateValiditeDocument").textContent =
+            devisSelectionne.validite + " jours";
+
+            document.getElementById("dateValiditeDocument2").textContent =
+            devisSelectionne.validite + " jours";
+
+            document.getElementById("numeroDocument").textContent = 
+            devisSelectionne.numero
 
             document.getElementById("statutDevisOffcanvas").textContent = 
             devisSelectionne.status;
 
             afficherArticlesOffcanvas(devisSelectionne.articlesDuDevis);
+
+            afficherRelationsDevis(devisSelectionne.numero);
 
             document.getElementById("clientNomDocument").textContent =
             devisSelectionne.client2.designation;
@@ -627,7 +816,18 @@ function afficherDevis() {
             document.getElementById("clientLocalisationDocument").textContent =
             devisSelectionne.client2.localisation;
             
+
+            // document.getElementById("devise4").innerText = 
+            // deviseValue.value;
+
+            // document.getElementById("devise5").innerText = 
+            // deviseValue.value;
+
+            // document.getElementById("devise6").innerText = 
+            // deviseValue.value;
+            
             console.log(devisSelectionne);
+            // console.log("Devise :", deviseValue.value);
 
             const offcanvas = new bootstrap.Offcanvas(
                 document.getElementById("offcanvasdevis")
@@ -648,6 +848,572 @@ function afficherDevis() {
         });
     });
     
+};
+
+function CreerAcompte() {
+    window.location.href = `CreerAcompte.html?devis=${encodeURIComponent(numeroDevisActuel)}`;
+}
+
+// ======================================================
+// OUVRIR UN DEVIS DEPUIS L'URL
+// ======================================================
+
+function ouvrirDevisDepuisURL() {
+
+    const parametres =
+        new URLSearchParams(window.location.search);
+
+    const numeroDevisURL =
+        parametres.get("devis");
+
+    const onglet =
+        parametres.get("onglet");
+
+
+    // Aucun devis demandé dans l'URL
+    if (!numeroDevisURL) {
+        return;
+    }
+
+
+    // Rechercher le devis
+    const devisSelectionne =
+        devis.find((devi) => {
+
+            return devi.numero === numeroDevisURL;
+
+        });
+
+
+    if (!devisSelectionne) {
+        return;
+    }
+
+
+    // Mémoriser le devis actuel
+    numeroDevisActuel =
+        devisSelectionne.numero;
+
+
+    // ==================================================
+    // REMPLIR L'OFFCANVAS
+    // ==================================================
+
+    document.getElementById(
+        "numeroDevisOffcanvas"
+    ).textContent =
+        devisSelectionne.numero;
+
+
+    document.getElementById(
+        "nomClientOffcanvas"
+    ).textContent =
+        devisSelectionne.client2.designation;
+
+
+    document.getElementById(
+        "totalHTOffcanvas"
+    ).textContent =
+        devisSelectionne.totalHT;
+
+
+    document.getElementById(
+        "totalTTCOffcanvas"
+    ).textContent =
+        devisSelectionne.totalTTC;
+
+
+    document.getElementById(
+        "dateDevisOffcanvas"
+    ).textContent =
+        devisSelectionne.dateEmission;
+
+
+    document.getElementById(
+        "statutDevisOffcanvas"
+    ).textContent =
+        devisSelectionne.status;
+
+
+    document.getElementById(
+        "dateEmissionDocument"
+    ).textContent =
+        devisSelectionne.dateEmission;
+
+
+    document.getElementById(
+        "dateValiditeDocument"
+    ).textContent =
+        devisSelectionne.validite + " jours";
+
+
+    document.getElementById(
+        "dateValiditeDocument2"
+    ).textContent =
+        devisSelectionne.validite + " jours";
+
+
+    document.getElementById(
+        "numeroDocument"
+    ).textContent =
+        devisSelectionne.numero;
+
+
+    document.getElementById(
+        "clientNomDocument"
+    ).textContent =
+        devisSelectionne.client2.designation;
+
+
+    document.getElementById(
+        "clientAdresseDocument"
+    ).textContent =
+        devisSelectionne.client2.adress;
+
+
+    document.getElementById(
+        "clientLocalisationDocument"
+    ).textContent =
+        devisSelectionne.client2.localisation;
+
+
+    document.getElementById(
+        "totalTVAOffcanvas"
+    ).textContent =
+        devisSelectionne.totalTVA;
+
+
+    // Articles
+    afficherArticlesOffcanvas(
+        devisSelectionne.articlesDuDevis
+    );
+
+
+    // Relations
+    afficherRelationsDevis(
+        devisSelectionne.numero
+    );
+
+
+    // ==================================================
+    // OUVRIR L'OFFCANVAS
+    // ==================================================
+
+    const offcanvasElement =
+        document.getElementById("offcanvasdevis");
+
+    const offcanvas =
+        bootstrap.Offcanvas.getOrCreateInstance(
+            offcanvasElement
+        );
+
+    offcanvas.show();
+
+
+    // ==================================================
+    // OUVRIR L'ONGLET DEMANDÉ
+    // ==================================================
+
+    if (onglet === "relation") {
+
+        const relationTab =
+            document.getElementById("relation-tab");
+
+        if (relationTab) {
+
+            const tab =
+                bootstrap.Tab.getOrCreateInstance(
+                    relationTab
+                );
+
+            tab.show();
+
+        }
+
+    }
+
+}
+
+function supprimerDevis() {
+    const confirmation = confirm("Voulez vous vraiment supprimer ce devis ?");
+
+    if (!confirmation) return ;
+    
+
+    const devisSelectionne = devis.find((devi) => {
+        return devi.numero === numeroDevisActuel;
+    });
+
+    if (!devisSelectionne) return;
+
+    const nouvelListeDevis = devis.filter((devi) => {
+        return devi.numero !== numeroDevisActuel; 
+    });
+
+    devis.length = 0;
+    devis.push(...nouvelListeDevis);
+
+    localStorage.setItem("devis", JSON.stringify(devis));
+
+    afficherDevis();
+
+    const offcanvasElement = document.getElementById("offcanvasdevis");
+    const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
+
+    if (offcanvas) {
+        offcanvas.hide();
+    }
+}
+
+const choixLignesParPage = document.querySelectorAll("[data-lignes]");
+
+choixLignesParPage.forEach((bouton) => {
+    bouton.addEventListener("click", () => {
+        lignesParPage = Number(bouton.dataset.lignes);
+        pageActuelle = 1;
+        afficherDevis();
+    });
+});
+
+pageSuivante.addEventListener("click", () => {
+    const devisFilters = obtenirDevisFiltres(); 
+    const nombreTotalPages = calculerNombrePages(devisFilters.length);
+
+    if (pageActuelle < nombreTotalPages) {
+        pageActuelle++;
+        afficherDevis();
+    }
+});
+
+pagePrecedente.addEventListener("click", () => {
+    if (pageActuelle > 1) {
+        pageActuelle--;
+        afficherDevis();
+    }
+})
+
+function calculerNombrePages(nombreDevis) {
+    return Math.ceil(nombreDevis / lignesParPage);
+};
+
+function obtenirDevisFiltres() {
+    const texteRecherche = rechercheDevis.value.toLowerCase();
+
+    return devis.filter((devi) => {
+        return (
+            (clientActuel === null ||
+                devi.client2.designation === clientActuel.designation) &&
+            (
+                devi.numero.toLowerCase().includes(texteRecherche) ||
+                devi.client2.designation.toLowerCase().includes(texteRecherche)
+            )
+        );
+    });
+}
+
+function calculerTotauxParStatus() {
+    
+    const totalHTSigne = document.getElementById("totalSigneHT");
+    let totalHTSigneValue = 0;
+
+    const totalTTCSigne = document.getElementById("totalSigneTTC");
+    let totalTTCSigneValue = 0;
+
+    const totalHTFinalise = document.getElementById("totalFinaliseHT");
+    let totalHTFinaliseValue = 0;
+
+    const totalTTCFinalise = document.getElementById("totalFinaliseTTC");
+    let totalTTCFinaliseValue = 0;
+
+    const totalHTRefuse = document.getElementById("totalRefuseHT");
+    let totalHTRefuseValue = 0;
+
+    const totalTTCRefuse = document.getElementById("totalRefuseTTC");
+    let totalTTCRefuseValue = 0;
+
+    devis.forEach((devi) => {
+
+        if (devi.status === "signé") {
+
+            totalHTSigneValue += devi.totalHT;
+            totalTTCSigneValue += devi.totalTTC; 
+
+        } else if (devi.status === "finalisé") {
+
+            totalHTFinaliseValue += devi.totalHT;
+            totalTTCFinaliseValue += devi.totalTTC;
+
+        } else if (devi.status === "refusé") {
+
+            totalHTRefuseValue += devi.totalHT;
+            totalTTCRefuseValue += devi.totalTTC;
+        }
+    });
+
+    totalHTSigne.innerText = totalHTSigneValue;
+    totalTTCSigne.innerText = totalTTCSigneValue;
+
+    totalHTFinalise.innerText = totalHTFinaliseValue;
+    totalTTCFinalise.innerText = totalTTCFinaliseValue;
+
+    totalHTRefuse.innerText = totalHTRefuseValue;
+    totalTTCRefuse.innerText = totalTTCRefuseValue;
+};
+
+// ======================================================
+// AFFICHER LES RELATIONS DU DEVIS
+// ======================================================
+
+function afficherRelationsDevis(numeroDevis) {
+
+    // Récupérer les acomptes
+    const acomptes =
+        JSON.parse(localStorage.getItem("acomptes")) || [];
+
+    // Récupérer les factures
+    const factures =
+        JSON.parse(localStorage.getItem("factures")) || [];
+
+
+    // ==================================================
+    // ACOMPTES DU DEVIS
+    // ==================================================
+
+    const acomptesDuDevis = acomptes.filter((acompte) => {
+
+        return acompte.devisNumero === numeroDevis;
+
+    });
+
+
+    // ==================================================
+    // FACTURES DU DEVIS
+    // ==================================================
+
+    const facturesDuDevis = factures.filter((facture) => {
+
+        return facture.devisNumero === numeroDevis;
+
+    });
+
+
+    // ==================================================
+    // ÉLÉMENTS HTML
+    // ==================================================
+
+    const listeAcomptes =
+        document.getElementById("listeAcomptesRelation");
+
+    const nombreAcomptes =
+        document.getElementById("nombreAcomptesRelation");
+
+    const listeFactures =
+        document.getElementById("listeFacturesRelation");
+
+    const nombreFactures =
+        document.getElementById("nombreFacturesRelation");
+
+
+    // ==================================================
+    // NOMBRE D'ACOMPTES
+    // ==================================================
+
+    nombreAcomptes.textContent =
+        acomptesDuDevis.length;
+
+
+    // ==================================================
+    // AFFICHER LES ACOMPTES
+    // ==================================================
+
+    if (acomptesDuDevis.length === 0) {
+
+        listeAcomptes.innerHTML = `
+            <small class="text-muted">
+                Aucun acompte lié à ce devis.
+            </small>
+        `;
+
+    } else {
+
+        listeAcomptes.innerHTML = "";
+
+        acomptesDuDevis.forEach((acompte) => {
+
+            listeAcomptes.innerHTML += `
+
+                <div class="border rounded-3 p-3 mb-2">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <strong class="text-primary">
+                                ${acompte.numero}
+                            </strong>
+
+                            <br>
+
+                            <small class="text-muted">
+                                ${acompte.designation || "Acompte"}
+                            </small>
+
+                        </div>
+
+                        <span class="badge bg-light text-secondary">
+                            ${acompte.status}
+                        </span>
+
+                    </div>
+
+
+                    <div class="row mt-3">
+
+                        <div class="col-md-4">
+
+                            <small class="text-muted">
+                                Calcul
+                            </small>
+
+                            <div class="fw-bold">
+
+                                ${
+                                    acompte.typeCalcul === "pourcentage"
+                                        ? `${acompte.pourcentage} %`
+                                        : `${acompte.montantHTSaisi} fcfa`
+                                }
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <small class="text-muted">
+                                Montant HT
+                            </small>
+
+                            <div class="fw-bold">
+                                ${acompte.montantHT} fcfa
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <small class="text-muted">
+                                Montant TTC
+                            </small>
+
+                            <div class="fw-bold">
+                                ${acompte.montantTTC} fcfa
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    // ==================================================
+    // NOMBRE DE FACTURES
+    // ==================================================
+
+    nombreFactures.textContent =
+        facturesDuDevis.length;
+
+
+    // ==================================================
+    // AFFICHER LES FACTURES
+    // ==================================================
+
+    if (facturesDuDevis.length === 0) {
+
+        listeFactures.innerHTML = `
+            <small class="text-muted">
+                Aucune facture liée à ce devis.
+            </small>
+        `;
+
+    } else {
+
+        listeFactures.innerHTML = "";
+
+        facturesDuDevis.forEach((facture) => {
+
+            listeFactures.innerHTML += `
+
+                <div class="border rounded-3 p-3 mb-2">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <strong class="text-primary">
+                                ${facture.numero}
+                            </strong>
+
+                            <br>
+
+                            <small class="text-muted">
+                                ${facture.designation || "Facture"}
+                            </small>
+
+                        </div>
+
+                        <span class="badge bg-light text-secondary">
+                            ${facture.status || "En attente"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="row mt-3">
+
+                        <div class="col-md-6">
+
+                            <small class="text-muted">
+                                Total HT
+                            </small>
+
+                            <div class="fw-bold">
+                                ${facture.totalHT || 0} fcfa
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <small class="text-muted">
+                                Total TTC
+                            </small>
+
+                            <div class="fw-bold">
+                                ${facture.totalTTC || 0} fcfa
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
 }
 
 function afficherArticlesOffcanvas(articles) {
@@ -710,6 +1476,13 @@ function afficherArticlesOffcanvas(articles) {
 const inputDateEmission = document.getElementById("dateEmission");
 const inputDateValidite = document.getElementById("dateValidite");
 
+if (devisAModifier) {
+    if (inputDateEmission && inputDateValidite) {
+        inputDateEmission.value = devisAModifier.dateEmission;
+        inputDateValidite.value = devisAModifier.validite;
+    }
+}
+
 const textDateEmission = document.getElementById("emission");
 const textDateValidite = document.getElementById("validité");
 
@@ -761,29 +1534,42 @@ if (inputDateValidite) {
 
 // });
 
-const deviseValue = document.getElementById("deviseValue");
+    const deviseValue = document.getElementById("deviseValue");   
 
-if (deviseValue) {
-    
-    deviseValue.addEventListener("change", () => {
+    if (deviseValue) {
+        
+        deviseValue.addEventListener("change", () => {
 
-    const devise1 = document.getElementById("devise1");
-    devise1.innerText = deviseValue.value;
+            const devise1 = document.getElementById("devise1");
+            devise1.innerText = deviseValue.value;
 
-    const devise2 = document.getElementById("devise2");
-    devise2.innerText = deviseValue.value;
+            const devise2 = document.getElementById("devise2");
+            devise2.innerText = deviseValue.value;
 
-    const devise3 = document.getElementById("devise3");
-    devise3.innerText = deviseValue.value;
+            const devise3 = document.getElementById("devise3");
+            devise3.innerText = deviseValue.value;
 
-    const devisActuelle = document.getElementById("deviseA");
-    devisActuelle.innerText = deviseValue.value;
-    console.log(deviseValue.value);
-    
-});
+            const devisActuelle = document.getElementById("deviseA");
+            devisActuelle.innerText = deviseValue.value;
+            
+            console.log(deviseValue.value);
+            
+        });
+
+    }
+
+
+function creerFactureDepuisDevis() {
+    if (!numeroDevisActuel) {
+        alert("Sélectionne d'abord un devis.");
+        return;
+    }
+
+    window.location.href =
+        `CreerFacture.html?devis=${encodeURIComponent(numeroDevisActuel)}`;
 }
-
 
 if (tbody2) {
     afficherDevis();
+    ouvrirDevisDepuisURL();
 }
